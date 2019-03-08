@@ -33,6 +33,8 @@ static int      gfx_fast_color_mode = 0;
 static int saved_xpos = 0;
 static int saved_ypos = 0;
 
+
+
 /* Open a new graphics window. */
 
 void gfx_open( int width, int height, const char *title )
@@ -130,7 +132,14 @@ void gfx_fillcircle( int x, int y, int radius )
 */
 void gfx_text(char *test2, int x, int y)
 {
-	XDrawString(gfx_display,gfx_window,gfx_gc,x,y,test2,strlen(test2));
+	XFontStruct *ft;
+	char* font_name = "*-20-200-*";
+	ft =  XLoadQueryFont(gfx_display, font_name);
+	if (!ft) {
+    	fprintf(stderr, "XLoadQueryFont: failed loading font '%s'\n", font_name);
+	}
+	XSetFont(gfx_display, gfx_gc, ft->fid);
+	XDrawString(gfx_display, gfx_window, gfx_gc, x, y+ft->ascent, test2, strlen(test2));
 }
 
 /* Change the current drawing color. */
