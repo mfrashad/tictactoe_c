@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include "gfx.h"
 
+#define WIN_WIDTH 800
+#define WIN_HEIGHT 600
 
 typedef enum {
   BLUE = -1,
@@ -83,7 +85,7 @@ Position *create_position(int x, int y) {
     return position;
 }
 
-void draw_board(Game *game){
+void draw_board_cli(Game *game){
     for(int i = 0; i < game->size; i++) {
         for(int j = 0; j < game->size; j++)
             printf("%3d  |", game->board[i][j]);
@@ -91,29 +93,40 @@ void draw_board(Game *game){
     }
 }
 
+void draw_board(Game *game) {
+    int side_length = 100;
+    int x_offset = (WIN_WIDTH - (side_length * game->size)) / 2;
+    int y_offset = (WIN_HEIGHT - (side_length * game->size)) / 2;
+
+    gfx_color(255,255,255);
+    for(int i = 0; i < game->size; i++) {
+        for(int j = 0; j < game->size; j++){
+            gfx_rectangle(x_offset + side_length * j, y_offset + side_length * i, side_length, side_length);
+        }
+    }
+}
+
 int main()
 {
-    int ysize = 600;
-    int xsize = 800;
 
     char c;
     Game *game = create_game(3);
     printf("%d\n", move(game, create_position(0, 0), BLUE));
     printf("%d\n", move(game, create_position(0, 1), RED));
     printf("%d\n", move(game, create_position(1, 1), BLUE));
-    draw_board(game);
 
 
-    /* Open a new window for drawing.
-    gfx_open(xsize,ysize,"Example Graphics Program");
+    //Open a new window for drawing.
+    gfx_open(WIN_WIDTH,WIN_HEIGHT,"Example Graphics Program");
 
     gfx_clear_color(0,0,0);
     gfx_clear();
+    draw_board(game);
     while(1) {
         // Wait for the user to press a character.
         c = gfx_wait();
         if(c=='q') break;
     }
-    */
+    
     return 0;
 }
