@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "game.h"
+#include "tictactoe.h"
 #include "gfx.h"
 
 Game *create_game(int size) {

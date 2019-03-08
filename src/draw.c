@@ -1,5 +1,5 @@
 #include "gfx.h"
-#include "game.h"
+#include "tictactoe.h"
 #include "draw.h"
 
 
