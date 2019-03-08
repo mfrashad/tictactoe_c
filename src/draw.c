@@ -29,22 +29,11 @@ void draw_board(Game *game) {
     }
 }
 
-void draw_menu(){
-    int w = 300, h = 100;
-    int x_offset = (WIN_WIDTH - w) / 2;
-    int y_offset = (WIN_HEIGHT - h) / 2;
-    int x_padding = 40;
-    int y_padding = 10;
-    int y_btn_margin = 75;
+void draw_menu(Menu *m){
 
-    char *play_msg = "  Play   ";
-    char *stat_msg = "Statistic";
-
-    //Draw Play button
-    gfx_rectangle(x_offset, y_offset - y_btn_margin, w, h);
-    gfx_text(play_msg, x_offset + w/2 - x_padding, y_offset + h/2 - y_btn_margin - y_padding);
-
-    //Draw Statistic Button
-    gfx_rectangle(x_offset, y_offset + y_btn_margin, w, h);
-    gfx_text(stat_msg, x_offset + w/2 - x_padding, y_offset + h/2 + y_btn_margin - y_padding);
+    for(int i=0; i < m->total_button; i++){
+        Button b = *(m->buttons[i]);
+        gfx_rectangle(b.x_offset, b.y_offset + m->y_btn_margin * (i - m->total_button + (i == m->total_button/2 && m->total_button%2 == 0)), b.w, b.h);
+        gfx_text(b.msg, b.x_offset + b.w/2 - b.x_text_offset, b.y_offset + b.h/2 + m->y_btn_margin * (i - m->total_button + (i == m->total_button/2 && m->total_button%2 == 0)) - b.y_text_offset);
+    }
 }

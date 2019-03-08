@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "tictactoe.h"
 #include "gfx.h"
+#include "tictactoe.h"
+#include "menu.h"
+#include "game.h"
+
 
 
 
@@ -56,7 +59,7 @@ int main()
     gfx_clear_color(0,0,0);
     gfx_clear();
     //draw_board(game);
-    draw_menu();
+    menu();
     while(1) {
         // Wait for the user to press a character.
         c = gfx_wait();
