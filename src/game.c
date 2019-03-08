@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "game.h"
+#include "gfx.h"
 
 Game *create_game(int size) {
     Game *g = malloc(sizeof(Game));
@@ -12,6 +13,7 @@ Game *create_game(int size) {
     g->col_scores = calloc(size, sizeof(int));
     g->left_right_diagonal_scores = 0;
     g->right_left_diagonal_scores = 0;
+    g->next_turn = O;
 
     return g;
 }
@@ -49,7 +51,7 @@ Player move(Game *game, Position *last_move, Player player) {
         game->right_left_diagonal_scores += player;
     }
 
-
+    game->next_turn = player == O ? X : O;
     return check_winner(game, last_move);
 }
 
@@ -59,4 +61,11 @@ Position *create_position(int x, int y) {
     position->y = y;
 
     return position;
+}
+
+void win(Player winner) {
+    char *str;
+    if(winner==O) str = "Player O wins";
+    if(winner==X) str = "Player X wins";
+    gfx_text(str, 200, 100);
 }

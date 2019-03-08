@@ -28,3 +28,23 @@ void draw_board(Game *game) {
         }
     }
 }
+
+void draw_menu(){
+    int w = 300, h = 100;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = (WIN_HEIGHT - h) / 2;
+    int x_padding = 40;
+    int y_padding = 10;
+    int y_btn_margin = 75;
+
+    char *play_msg = "  Play   ";
+    char *stat_msg = "Statistic";
+
+    //Draw Play button
+    gfx_rectangle(x_offset, y_offset - y_btn_margin, w, h);
+    gfx_text(play_msg, x_offset + w/2 - x_padding, y_offset + h/2 - y_btn_margin - y_padding);
+
+    //Draw Statistic Button
+    gfx_rectangle(x_offset, y_offset + y_btn_margin, w, h);
+    gfx_text(stat_msg, x_offset + w/2 - x_padding, y_offset + h/2 + y_btn_margin - y_padding);
+}

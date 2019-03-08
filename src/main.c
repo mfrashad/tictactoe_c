@@ -4,9 +4,7 @@
 #include "game.h"
 #include "gfx.h"
 
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
-#define SIDE_LENGTH 100
+
 
 void draw_board_cli(Game *game){
     for(int i = 0; i < game->size; i++) {
@@ -30,9 +28,10 @@ void check_mouse_input(Game *game){
             //printf("x: %d - %d, \t y: %d - %d\n", x_offset + SIDE_LENGTH * j, x_offset + SIDE_LENGTH * (j+1), y_offset + SIDE_LENGTH * i, y_offset + SIDE_LENGTH * (i+1));
             if ((mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) &&
                 (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) )){
-                move(game, create_position(j,i), O);
+                Player winner = move(game, create_position(j,i), game->next_turn);
                 gfx_clear();
                 draw_board(game);
+                if(winner) win(winner);
             }
         }
     }
@@ -56,7 +55,8 @@ int main()
 
     gfx_clear_color(0,0,0);
     gfx_clear();
-    draw_board(game);
+    //draw_board(game);
+    draw_menu();
     while(1) {
         // Wait for the user to press a character.
         c = gfx_wait();

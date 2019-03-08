@@ -10,9 +10,7 @@ Version 2, 9/23/2011 - Fixes a bug that could result in jerky animation.
 #ifndef GFX_H
 #define GFX_H
 
-#define WIN_WIDTH 800
-#define WIN_HEIGHT 600
-#define SIDE_LENGTH 100
+
 
 /* Open a new graphics window. */
 void gfx_open( int width, int height, const char *title );
