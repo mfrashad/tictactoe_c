@@ -3,10 +3,11 @@
 #include <stdbool.h>
 #include "gfx.h"
 #include "tictactoe.h"
+#include "draw.h"
 #include "menu.h"
 #include "game.h"
 
-
+GameState game_state = MAIN_MENU;
 
 
 void draw_board_cli(Game *game){
@@ -31,10 +32,10 @@ void check_mouse_input(Game *game){
             //printf("x: %d - %d, \t y: %d - %d\n", x_offset + SIDE_LENGTH * j, x_offset + SIDE_LENGTH * (j+1), y_offset + SIDE_LENGTH * i, y_offset + SIDE_LENGTH * (i+1));
             if ((mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) &&
                 (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) )){
-                Player winner = move(game, create_position(j,i), game->next_turn);
+                game->winner = move(game, create_position(j,i), game->next_turn);
                 gfx_clear();
                 draw_board(game);
-                if(winner) win(winner);
+                if(game->winner) game_state = GAME_WIN;
             }
         }
     }
@@ -58,12 +59,41 @@ int main()
 
     gfx_clear_color(0,0,0);
     gfx_clear();
+
+    
+    Menu *player_menu = create_player_menu();
+    Menu *start_menu = create_start_menu();
     //draw_board(game);
-    menu();
     while(1) {
         // Wait for the user to press a character.
-        c = gfx_wait();
-        if(c==0x01) check_mouse_input(game);
+        switch(game_state) {
+            case MAIN_MENU:
+                gfx_clear();
+                draw_menu(start_menu);
+                c = gfx_wait();
+                check_menu_input(c, start_menu);
+                break;
+            case PLAYER_MENU:
+                gfx_clear();
+                draw_menu(player_menu);
+                c = gfx_wait();
+                check_menu_input(c, player_menu);
+                break;
+            case GAME:
+                gfx_clear();
+                draw_board(game);
+                c = gfx_wait();
+                check_mouse_input(game);
+                break;
+            case GAME_WIN:
+                gfx_clear();
+                draw_board(game);
+                draw_win_text(game->winner);
+                c = gfx_wait();
+                check_mouse_input(game);
+
+                
+        }
         if(c=='q') break;
         //if(c==0x01) printf("Coordinates: %d %d",gfx_xpos(),gfx_ypos());
     }

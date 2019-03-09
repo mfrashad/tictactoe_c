@@ -1,11 +1,19 @@
 
 #include <stdlib.h>
+#include <stdio.h>
+#include "gfx.h"
 #include "tictactoe.h"
 #include "game.h"
 #include "menu.h"
+#include "draw.h"
 
+extern GameState game_state;
 void play(){
-    printf("Play\n");
+    game_state = PLAYER_MENU;
+}
+
+void play1(){
+    game_state = GAME;
 }
 
 void statistic(){
@@ -55,6 +63,25 @@ Menu *create_start_menu(){
     return start_menu;
 }
 
+Menu *create_player_menu(){
+    int w = 300, h = 100;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = (WIN_HEIGHT - h) / 2;
+    int x_text_offset = 40;
+    int y_text_offset = 10;
+    int y_btn_margin = 120;
+
+    char *msg1 = "1 Player";
+    char *msg2 = "2 Player";
+    char *back_msg = "  Back  ";
+
+    Menu *player_menu = create_menu(3, 0, y_btn_margin);
+    player_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, play1); //Play button
+    player_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, statistic); //Stats button
+    player_menu->buttons[2] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, statistic); //Back button
+    return player_menu;
+}
+
 void check_menu_input(char c, Menu *m){
     if(c == 0x01) {
         int mouse_x = gfx_xpos();
@@ -64,7 +91,7 @@ void check_menu_input(char c, Menu *m){
             Button b = *(m->buttons[i]);
             int min_x = b.x_offset;
             int max_x = min_x + b.w;
-            int min_y = b.y_offset + m->y_btn_margin * (i - m->total_button + (i == m->total_button/2 && m->total_button%2 == 0));
+            int min_y = b.y_offset + m->y_btn_margin * (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
             int max_y = min_y + b.h;
             
             if ((mouse_x >= min_x && mouse_x <= max_x ) && (mouse_y >= min_y && mouse_y <= max_y )){

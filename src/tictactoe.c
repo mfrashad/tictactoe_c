@@ -14,6 +14,7 @@ Game *create_game(int size) {
     g->left_right_diagonal_scores = 0;
     g->right_left_diagonal_scores = 0;
     g->next_turn = O;
+    g->winner = 0;
 
     return g;
 }

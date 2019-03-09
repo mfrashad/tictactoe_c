@@ -20,6 +20,7 @@ typedef struct {
     int left_right_diagonal_scores;
     int right_left_diagonal_scores;
     int next_turn;
+    Player winner;
 } Game;
 
 typedef struct {
