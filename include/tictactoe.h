@@ -12,6 +12,11 @@ typedef enum {
   X
 } Player;
 
+typedef enum {
+    SINGLE,
+    MULTI
+} GameMode;
+
 typedef struct {
     int size;
     int **board;
@@ -20,6 +25,8 @@ typedef struct {
     int left_right_diagonal_scores;
     int right_left_diagonal_scores;
     int next_turn;
+    GameMode mode;
+    Player player;
     Player winner;
 } Game;
 

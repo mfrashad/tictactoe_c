@@ -16,6 +16,7 @@ Game *create_game(int size) {
     g->right_left_diagonal_scores = 0;
     g->next_turn = O;
     g->winner = 0;
+    g->mode = MULTI;
 
     return g;
 }
@@ -55,13 +56,28 @@ Player move(Game *game, Position *last_move, Player player) {
             game->left_right_diagonal_scores += player;
         }
 
-        if(last_move->x == game->size - last_move->y) {
+        if(last_move->x == game->size - 1 - last_move->y) {
             game->right_left_diagonal_scores += player;
         }
 
         game->next_turn = player == O ? X : O;
     }
-    return check_winner(game, last_move);
+    
+    game->winner = check_winner(game, last_move);
+    return game->winner;
+}
+
+void computer_move(Game *game){
+    Player computer = game->player == O ? X : O;
+    for(int i=0; i<game->size; i++){
+        for(int j=0; j<game->size; j++){
+            if(game->board[i][j] == NONE){
+                move(game, create_position(j,i), computer);
+                return;
+            }
+        }
+    }
+
 }
 
 Position *create_position(int x, int y) {

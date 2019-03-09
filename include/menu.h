@@ -24,7 +24,8 @@ typedef enum {
     MODE_MENU,
     PLAYER_MENU,
     STATISTIC,
-    GAME,
+    GAME1,
+    GAME2,
     GAME_WIN
 } GameState;
 
@@ -36,7 +37,7 @@ Menu *create_start_menu();
 
 Menu *create_mode_menu();
 
-Menu *create_win_menu();
+Menu *create_win_menu(Game *game);
 
 void check_menu_input(char c, Menu *m);
 

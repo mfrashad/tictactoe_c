@@ -8,7 +8,7 @@
 #include "game.h"
 
 GameState game_state = MAIN_MENU;
-
+Game *game;
 
 void draw_board_cli(Game *game){
     for(int i = 0; i < game->size; i++) {
@@ -32,9 +32,7 @@ void check_game_input(Game *game){
             //printf("x: %d - %d, \t y: %d - %d\n", x_offset + SIDE_LENGTH * j, x_offset + SIDE_LENGTH * (j+1), y_offset + SIDE_LENGTH * i, y_offset + SIDE_LENGTH * (i+1));
             if ((mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) &&
                 (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) )){
-                game->winner = move(game, create_position(j,i), game->next_turn);
-                gfx_clear();
-                draw_board(game);
+                move(game, create_position(j,i), game->next_turn);
                 if(game->winner) game_state = GAME_WIN;
             }
         }
@@ -47,12 +45,7 @@ int main()
 {
 
     char c;
-    Game *game = create_game(3);
-    /*
-    printf("%d\n", move(game, create_position(0, 0), O));
-    printf("%d\n", move(game, create_position(0, 1), X));
-    printf("%d\n", move(game, create_position(1, 1), O));
-    */
+    game = create_game(3);
 
     //Open a new window for drawing.
     gfx_open(WIN_WIDTH,WIN_HEIGHT,"Example Graphics Program");
@@ -63,7 +56,7 @@ int main()
     
     Menu *mode_menu = create_mode_menu();
     Menu *start_menu = create_start_menu();
-    Menu *win_menu = create_win_menu();
+    
     //draw_board(game);
     while(1) {
         // Wait for the user to press a character.
@@ -80,7 +73,18 @@ int main()
                 c = gfx_wait();
                 check_menu_input(c, mode_menu);
                 break;
-            case GAME:
+            case GAME1:
+                gfx_clear();
+                if(game->next_turn != game->player) computer_move(game);
+                if(game->winner) {
+                    game_state = GAME_WIN;
+                } else {
+                    draw_board(game);
+                    c = gfx_wait();
+                    check_game_input(game);
+                }
+                break;
+            case GAME2:
                 gfx_clear();
                 draw_board(game);
                 c = gfx_wait();
@@ -90,6 +94,7 @@ int main()
                 gfx_clear();
                 draw_board(game);
                 draw_win_text(game->winner);
+                Menu *win_menu = create_win_menu(game);
                 draw_menu(win_menu);
                 reset(&game);
                 //game = create_game(3);

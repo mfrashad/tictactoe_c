@@ -8,6 +8,7 @@
 #include "draw.h"
 
 extern GameState game_state;
+extern Game *game;
 void main_menu() {
     game_state = MAIN_MENU;
 }
@@ -16,11 +17,21 @@ void play(){
 }
 
 void play1(){
-    game_state = MODE_MENU;
+    game_state = GAME1;
+    game->mode = SINGLE;
+}
+
+void select_o(){
+    game->player = O;
+}
+
+void select_x(){
+    game->player = X;
 }
 
 void play2(){
-    game_state = GAME;
+    game_state = GAME2;
+    game->mode = MULTI;
 }
 
 void statistic(){
@@ -89,7 +100,26 @@ Menu *create_mode_menu(){
     return mode_menu;
 }
 
-Menu *create_win_menu(){
+Menu *create_player_menu(){
+    int w = 300, h = 100;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = (WIN_HEIGHT - h) / 2;
+    int x_text_offset = 40;
+    int y_text_offset = 10;
+    int x_btn_margin = 120;
+
+    char *msg1 = "X";
+    char *msg2 = "O";
+    char *back_msg = "  Back  ";
+
+    Menu *player_menu = create_menu(3, x_btn_margin, 0);
+    player_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, play1); //Play button
+    player_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, play2); //Stats button
+    player_menu->buttons[2] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, main_menu); //Back button
+    return player_menu;
+}
+
+Menu *create_win_menu(Game *game){
     int w = 180, h = 60;
     int x_offset = (WIN_WIDTH - w) / 2;
     int y_offset = 680;
@@ -101,10 +131,11 @@ Menu *create_win_menu(){
     char *msg2 = "Main Menu ";
 
     Menu *win_menu = create_menu(2, x_btn_margin, 0);
-    win_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, play1); //Play button
+    win_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, game->mode == SINGLE ? play1 : play2); //Play button
     win_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, main_menu); //Stats button
     return win_menu;
 }
+
 
 void check_menu_input(char c, Menu *m){
     if(c == 0x01) {
