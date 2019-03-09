@@ -7,8 +7,9 @@ Game *create_game(int size) {
     g->size = size;
     g->board = malloc(size * sizeof(int *));
 
-    for(int i = 0; i < size; i++) g->board[i] = malloc(size * sizeof(int));
-
+    for(int i = 0; i < size; i++){
+        g->board[i] = calloc(size, sizeof(int));
+    }
     g->row_scores = calloc(size, sizeof(int));
     g->col_scores = calloc(size, sizeof(int));
     g->left_right_diagonal_scores = 0;
@@ -45,19 +46,21 @@ Player check_winner(Game *game, Position *last_move) {
 }
 
 Player move(Game *game, Position *last_move, Player player) {
-    game->board[last_move->y][last_move->x] = player;
-    game->row_scores[last_move->y] += player;
-    game->col_scores[last_move->x] += player;
-    
-    if(last_move->x == last_move->y) {
-        game->left_right_diagonal_scores += player;
-    }
+    if(!game->board[last_move->y][last_move->x]){
+        game->board[last_move->y][last_move->x] = player;
+        game->row_scores[last_move->y] += player;
+        game->col_scores[last_move->x] += player;
 
-    if(last_move->x == game->size - last_move->y) {
-        game->right_left_diagonal_scores += player;
-    }
+        if(last_move->x == last_move->y) {
+            game->left_right_diagonal_scores += player;
+        }
 
-    game->next_turn = player == O ? X : O;
+        if(last_move->x == game->size - last_move->y) {
+            game->right_left_diagonal_scores += player;
+        }
+
+        game->next_turn = player == O ? X : O;
+    }
     return check_winner(game, last_move);
 }
 

@@ -95,6 +95,7 @@ int main()
                 //game = create_game(3);
                 c = gfx_wait();
                 check_menu_input(c, win_menu);
+                break;
 
                 
         }
