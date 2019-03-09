@@ -124,6 +124,9 @@ int main()
                 check_menu_input(c, win_menu);
                 free(win_menu);
                 break;
+            case QUIT:
+                return 0;
+                break;
 
                 
         }

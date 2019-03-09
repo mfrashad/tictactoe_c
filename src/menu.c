@@ -50,6 +50,10 @@ void statistic(){
     game_state = STATISTIC;
 }
 
+void quit(){
+    game_state = QUIT;
+}
+
 Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offset, int y_text_offset, char *msg, void (*onclick)()) {
     Button *b = malloc(sizeof(Button));
     b->w = w;
@@ -80,14 +84,16 @@ Menu *create_start_menu(){
     int y_offset = (WIN_HEIGHT - h) / 2;
     int x_text_offset = 40;
     int y_text_offset = 10;
-    int y_btn_margin = 75;
+    int y_btn_margin = 120;
 
     char *play_msg = "  Play   ";
     char *stat_msg = "Statistic";
+    char *quit_msg = "  Quit   ";
 
-    Menu *start_menu = create_menu(2, 0, y_btn_margin);
+    Menu *start_menu = create_menu(3, 0, y_btn_margin);
     start_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, play_msg, play); //Play button
     start_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, stat_msg, statistic); //Stats button
+    start_menu->buttons[2] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, quit_msg, quit); //Quit button
     
 
     return start_menu;

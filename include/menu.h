@@ -27,7 +27,8 @@ typedef enum {
     STATISTIC,
     GAME1,
     GAME2,
-    GAME_WIN
+    GAME_WIN,
+    QUIT
 } GameState;
 
 Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offset, int y_text_offset, char *msg, void (*onclick)());
