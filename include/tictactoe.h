@@ -40,6 +40,8 @@ Game *create_game(int size);
 
 void reset(Game **game);
 
+void resize(Game **game, int size);
+
 bool is_player_winner(Game *game, Position *last_move, Player player);
 
 Player check_winner(Game *game, Position *last_move);

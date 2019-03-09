@@ -13,7 +13,17 @@ void main_menu() {
     game_state = MAIN_MENU;
 }
 void play(){
+    game_state = SIZE_MENU;
+}
+
+void select_5(){
     game_state = MODE_MENU;
+    resize(&game, 5);
+}
+
+void select_3(){
+    game_state = MODE_MENU;
+    resize(&game, 3);
 }
 
 void play1(){
@@ -79,6 +89,25 @@ Menu *create_start_menu(){
     
 
     return start_menu;
+}
+
+Menu *create_size_menu(){
+    int w = 300, h = 100;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = (WIN_HEIGHT - h) / 2;
+    int x_text_offset = 25;
+    int y_text_offset = 10;
+    int y_btn_margin = 120;
+
+    char *msg1 = "3 x 3";
+    char *msg2 = "5 x 5";
+    char *back_msg = "Back";
+
+    Menu *mode_menu = create_menu(3, 0, y_btn_margin);
+    mode_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, select_3); //Play button
+    mode_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, select_5); //Stats button
+    mode_menu->buttons[2] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, main_menu); //Back button
+    return mode_menu;
 }
 
 Menu *create_mode_menu(){

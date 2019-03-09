@@ -26,6 +26,11 @@ void reset(Game **game){
     *game = new_game;
 }
 
+void resize(Game **game, int size){
+    Game *new_game = create_game(size);
+    *game = new_game;
+}
+
 bool is_player_winner(Game *game, Position *last_move, Player player) {
     int win_score = game->size * player;
 

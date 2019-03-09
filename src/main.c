@@ -56,6 +56,7 @@ int main()
     
     Menu *mode_menu = create_mode_menu();
     Menu *start_menu = create_start_menu();
+    Menu *size_menu = create_size_menu();
     
     //draw_board(game);
     while(1) {
@@ -66,6 +67,12 @@ int main()
                 draw_menu(start_menu);
                 c = gfx_wait();
                 check_menu_input(c, start_menu);
+                break;
+            case SIZE_MENU:
+                gfx_clear();
+                draw_menu(size_menu);
+                c = gfx_wait();
+                check_menu_input(c, size_menu);
                 break;
             case MODE_MENU:
                 gfx_clear();

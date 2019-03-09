@@ -21,6 +21,7 @@ typedef struct {
 
 typedef enum {
     MAIN_MENU,
+    SIZE_MENU,
     MODE_MENU,
     PLAYER_MENU,
     STATISTIC,
@@ -34,6 +35,8 @@ Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offse
 Menu *create_menu(int total_button, int x_btn_margin, int y_btn_margin);
 
 Menu *create_start_menu();
+
+Menu *create_size_menu();
 
 Menu *create_mode_menu();
 
