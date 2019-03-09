@@ -100,12 +100,14 @@ int main()
                 //game = create_game(3);
                 c = gfx_wait();
                 check_menu_input(c, win_menu);
+                free(win_menu);
                 break;
 
                 
         }
         if(c=='q') break;
         //if(c==0x01) printf("Coordinates: %d %d",gfx_xpos(),gfx_ypos());
+        
     }
     
     return 0;
