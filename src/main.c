@@ -58,11 +58,19 @@ int main()
     Menu *start_menu = create_start_menu();
     Menu *size_menu = create_size_menu();
     Menu *player_menu = create_player_menu();
+    Menu *statistic_menu = create_statistic_menu();
     
     //draw_board(game);
     while(1) {
         // Wait for the user to press a character.
         switch(game_state) {
+            case STATISTIC:
+                gfx_clear();
+                draw_menu(statistic_menu);
+                draw_statistic();
+                c = gfx_wait();
+                check_menu_input(c, statistic_menu);
+                break;
             case MAIN_MENU:
                 gfx_clear();
                 draw_menu(start_menu);

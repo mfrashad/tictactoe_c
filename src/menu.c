@@ -47,7 +47,7 @@ void play2(){
 }
 
 void statistic(){
-    printf("Statistic\n");
+    game_state = STATISTIC;
 }
 
 Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offset, int y_text_offset, char *msg, void (*onclick)()) {
@@ -165,6 +165,21 @@ Menu *create_win_menu(Game *game){
     win_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, game->mode == SINGLE ? play1 : play2); //Play button
     win_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, main_menu); //Stats button
     return win_menu;
+}
+
+Menu *create_statistic_menu(){
+    int w = 180, h = 60;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = 680;
+    int x_text_offset = 20;
+    int y_text_offset = 10;
+    int x_btn_margin = 120;
+
+    char *back_msg = "Back";
+
+    Menu *statistic_menu = create_menu(1, x_btn_margin, 0);
+    statistic_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, main_menu); //Play button
+    return statistic_menu;
 }
 
 

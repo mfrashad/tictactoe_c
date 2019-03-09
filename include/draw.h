@@ -11,4 +11,6 @@ void draw_board(Game *game);
 
 void draw_menu(Menu *menu);
 
+void draw_win_text(Player winner);
+
 #endif

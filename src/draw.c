@@ -43,6 +43,10 @@ void draw_menu(Menu *m){
     }
 }
 
+void draw_statistic(){
+    gfx_text("Games won : ", 30, 30);
+}
+
 void draw_win_text(Player winner){
     char *str;
     if(winner==O) str = "Player O wins";

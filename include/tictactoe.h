@@ -48,6 +48,8 @@ Player check_winner(Game *game, Position *last_move);
 
 Player move(Game *game, Position *last_move, Player player);
 
+void computer_move(Game *game);
+
 Position *create_position(int x, int y);
 
 void win(Player winner);
