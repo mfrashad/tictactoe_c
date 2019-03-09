@@ -37,6 +37,8 @@ Menu *create_start_menu();
 
 Menu *create_player_menu();
 
+Menu *create_win_menu();
+
 void check_menu_input(char c, Menu *m);
 
 void play();

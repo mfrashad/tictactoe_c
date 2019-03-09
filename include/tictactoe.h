@@ -31,6 +31,8 @@ typedef struct {
 
 Game *create_game(int size);
 
+void reset(Game **game);
+
 bool is_player_winner(Game *game, Position *last_move, Player player);
 
 Player check_winner(Game *game, Position *last_move);

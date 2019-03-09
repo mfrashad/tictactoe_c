@@ -63,6 +63,7 @@ int main()
     
     Menu *player_menu = create_player_menu();
     Menu *start_menu = create_start_menu();
+    Menu *win_menu = create_win_menu();
     //draw_board(game);
     while(1) {
         // Wait for the user to press a character.
@@ -89,8 +90,11 @@ int main()
                 gfx_clear();
                 draw_board(game);
                 draw_win_text(game->winner);
+                draw_menu(win_menu);
+                reset(&game);
+                //game = create_game(3);
                 c = gfx_wait();
-                check_mouse_input(game);
+                check_menu_input(c, win_menu);
 
                 
         }

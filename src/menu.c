@@ -8,6 +8,9 @@
 #include "draw.h"
 
 extern GameState game_state;
+void main_menu() {
+    game_state = MAIN_MENU;
+}
 void play(){
     game_state = PLAYER_MENU;
 }
@@ -82,6 +85,23 @@ Menu *create_player_menu(){
     return player_menu;
 }
 
+Menu *create_win_menu(){
+    int w = 180, h = 60;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = 500;
+    int x_text_offset = 40;
+    int y_text_offset = 10;
+    int x_btn_margin = 120;
+
+    char *msg1 = "Play Again";
+    char *msg2 = "Main Menu ";
+
+    Menu *win_menu = create_menu(2, x_btn_margin, 0);
+    win_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, play1); //Play button
+    win_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, main_menu); //Stats button
+    return win_menu;
+}
+
 void check_menu_input(char c, Menu *m){
     if(c == 0x01) {
         int mouse_x = gfx_xpos();
@@ -89,9 +109,10 @@ void check_menu_input(char c, Menu *m){
 
         for(int i=0; i < m->total_button; i++){
             Button b = *(m->buttons[i]);
-            int min_x = b.x_offset;
+            int margin_factor = (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
+            int min_x = b.x_offset + m->x_btn_margin * margin_factor;
             int max_x = min_x + b.w;
-            int min_y = b.y_offset + m->y_btn_margin * (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
+            int min_y = b.y_offset + m->y_btn_margin * margin_factor;
             int max_y = min_y + b.h;
             
             if ((mouse_x >= min_x && mouse_x <= max_x ) && (mouse_y >= min_y && mouse_y <= max_y )){

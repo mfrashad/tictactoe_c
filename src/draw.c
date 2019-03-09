@@ -33,8 +33,13 @@ void draw_menu(Menu *m){
 
     for(int i=0; i < m->total_button; i++){
         Button b = *(m->buttons[i]);
-        gfx_rectangle(b.x_offset, b.y_offset + m->y_btn_margin * (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0)), b.w, b.h);
-        gfx_text(b.msg, b.x_offset + b.w/2 - b.x_text_offset, b.y_offset + b.h/2 + m->y_btn_margin * (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0)) - b.y_text_offset);
+        int margin_factor = (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
+        int rect_x = b.x_offset + m->x_btn_margin * margin_factor;
+        int rect_y = b.y_offset + m->y_btn_margin * margin_factor;
+        int text_x = b.x_offset + b.w/2 + m->x_btn_margin * margin_factor - b.x_text_offset;
+        int text_y = b.y_offset + b.h/2 + m->y_btn_margin * margin_factor - b.y_text_offset;
+        gfx_rectangle(rect_x, rect_y, b.w, b.h);
+        gfx_text(b.msg, text_x, text_y);
     }
 }
 
@@ -42,5 +47,5 @@ void draw_win_text(Player winner){
     char *str;
     if(winner==O) str = "Player O wins";
     if(winner==X) str = "Player X wins";
-    gfx_text(str, 200, 100);
+    gfx_text(str, WIN_WIDTH/2 - 60, 100);
 }
