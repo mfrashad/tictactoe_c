@@ -27,15 +27,17 @@ void select_3(){
 }
 
 void play1(){
-    game_state = GAME1;
+    game_state = PLAYER_MENU;
     game->mode = SINGLE;
 }
 
 void select_o(){
+    game_state = GAME1;
     game->player = O;
 }
 
 void select_x(){
+    game_state = GAME1;
     game->player = X;
 }
 
@@ -135,15 +137,15 @@ Menu *create_player_menu(){
     int y_offset = (WIN_HEIGHT - h) / 2;
     int x_text_offset = 40;
     int y_text_offset = 10;
-    int x_btn_margin = 120;
+    int y_btn_margin = 120;
 
-    char *msg1 = "X";
-    char *msg2 = "O";
+    char *msg1 = "Play as X";
+    char *msg2 = "Play as O";
     char *back_msg = "  Back  ";
 
-    Menu *player_menu = create_menu(3, x_btn_margin, 0);
-    player_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, play1); //Play button
-    player_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, play2); //Stats button
+    Menu *player_menu = create_menu(3, 0, y_btn_margin);
+    player_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, select_x); //Play button
+    player_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, select_o); //Stats button
     player_menu->buttons[2] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, main_menu); //Back button
     return player_menu;
 }

@@ -40,6 +40,8 @@ Menu *create_size_menu();
 
 Menu *create_mode_menu();
 
+Menu *create_player_menu();
+
 Menu *create_win_menu(Game *game);
 
 void check_menu_input(char c, Menu *m);
