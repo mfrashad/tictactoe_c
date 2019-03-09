@@ -46,7 +46,7 @@ Menu *create_player_menu();
 Menu *create_win_menu(Game *game);
 
 Menu *create_statistic_menu();
-void check_menu_input(char c, Menu *m);
+bool check_menu_input(char c, Menu *m);
 
 void play();
 void statistic();

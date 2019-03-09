@@ -17,6 +17,7 @@ Game *create_game(int size) {
     g->next_turn = O;
     g->winner = 0;
     g->mode = MULTI;
+    g->draw = false;
 
     return g;
 }
@@ -69,7 +70,19 @@ Player move(Game *game, Position *last_move, Player player) {
     }
     
     game->winner = check_winner(game, last_move);
+    game->draw = is_draw(game);
     return game->winner;
+}
+
+bool is_draw(Game *game){
+    for(int i=0; i<game->size; i++){
+        for(int j=0; j<game->size; j++){
+            if(game->board[i][j] == NONE){
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 void computer_move(Game *game){

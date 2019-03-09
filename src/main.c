@@ -33,7 +33,7 @@ void check_game_input(Game *game){
             if ((mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) &&
                 (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) )){
                 move(game, create_position(j,i), game->next_turn);
-                if(game->winner) game_state = GAME_WIN;
+                if(game->winner || game->draw) game_state = GAME_WIN;
             }
         }
     }
@@ -98,7 +98,7 @@ int main()
             case GAME1:
                 gfx_clear();
                 if(game->next_turn != game->player) computer_move(game);
-                if(game->winner) {
+                if(game->winner || game->draw) {
                     game_state = GAME_WIN;
                 } else {
                     draw_board(game);
@@ -118,10 +118,10 @@ int main()
                 draw_win_text(game->winner);
                 Menu *win_menu = create_win_menu(game);
                 draw_menu(win_menu);
-                reset(&game);
                 //game = create_game(3);
                 c = gfx_wait();
-                check_menu_input(c, win_menu);
+                while(!check_menu_input(c, win_menu)) c = gfx_wait();;
+                reset(&game);
                 free(win_menu);
                 break;
             case QUIT:

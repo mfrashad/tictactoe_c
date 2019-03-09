@@ -25,6 +25,7 @@ typedef struct {
     int left_right_diagonal_scores;
     int right_left_diagonal_scores;
     int next_turn;
+    bool draw;
     GameMode mode;
     Player player;
     Player winner;
@@ -43,6 +44,8 @@ void reset(Game **game);
 void resize(Game **game, int size);
 
 bool is_player_winner(Game *game, Position *last_move, Player player);
+
+bool is_draw(Game *game);
 
 Player check_winner(Game *game, Position *last_move);
 

@@ -189,7 +189,7 @@ Menu *create_statistic_menu(){
 }
 
 
-void check_menu_input(char c, Menu *m){
+bool check_menu_input(char c, Menu *m){
     if(c == 0x01) {
         int mouse_x = gfx_xpos();
         int mouse_y = gfx_ypos();
@@ -204,8 +204,10 @@ void check_menu_input(char c, Menu *m){
             
             if ((mouse_x >= min_x && mouse_x <= max_x ) && (mouse_y >= min_y && mouse_y <= max_y )){
                 b.onclick();
+                return true;
             }
 
         }
     }
+    return false;
 }
