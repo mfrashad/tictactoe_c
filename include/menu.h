@@ -21,9 +21,8 @@ typedef struct {
 
 typedef enum {
     MAIN_MENU,
+    MODE_MENU,
     PLAYER_MENU,
-    PLAYER_NAME1,
-    PLAYER_NAME2,
     STATISTIC,
     GAME,
     GAME_WIN
@@ -35,7 +34,7 @@ Menu *create_menu(int total_button, int x_btn_margin, int y_btn_margin);
 
 Menu *create_start_menu();
 
-Menu *create_player_menu();
+Menu *create_mode_menu();
 
 Menu *create_win_menu();
 

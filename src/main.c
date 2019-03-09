@@ -20,7 +20,7 @@ void draw_board_cli(Game *game){
 
 
 
-void check_mouse_input(Game *game){
+void check_game_input(Game *game){
     int mouse_x = gfx_xpos();
     int mouse_y = gfx_ypos();
 
@@ -61,7 +61,7 @@ int main()
     gfx_clear();
 
     
-    Menu *player_menu = create_player_menu();
+    Menu *mode_menu = create_mode_menu();
     Menu *start_menu = create_start_menu();
     Menu *win_menu = create_win_menu();
     //draw_board(game);
@@ -74,17 +74,17 @@ int main()
                 c = gfx_wait();
                 check_menu_input(c, start_menu);
                 break;
-            case PLAYER_MENU:
+            case MODE_MENU:
                 gfx_clear();
-                draw_menu(player_menu);
+                draw_menu(mode_menu);
                 c = gfx_wait();
-                check_menu_input(c, player_menu);
+                check_menu_input(c, mode_menu);
                 break;
             case GAME:
                 gfx_clear();
                 draw_board(game);
                 c = gfx_wait();
-                check_mouse_input(game);
+                check_game_input(game);
                 break;
             case GAME_WIN:
                 gfx_clear();
