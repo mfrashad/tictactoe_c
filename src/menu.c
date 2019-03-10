@@ -192,24 +192,25 @@ Menu *create_statistic_menu(){
 
 
 bool check_menu_input(char c, Menu *m){
-    if(c == 0x01) {
-        int mouse_x = gfx_xpos();
-        int mouse_y = gfx_ypos();
+    
+    int mouse_x = gfx_xpos();
+    int mouse_y = gfx_ypos();
+    for(int i=0; i < m->total_button; i++){
+        Button b = *(m->buttons[i]);
+        int margin_factor = (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
+        int min_x = b.x_offset + m->x_btn_margin * margin_factor;
+        int max_x = min_x + b.w;
+        int min_y = b.y_offset + m->y_btn_margin * margin_factor;
+        int max_y = min_y + b.h;
 
-        for(int i=0; i < m->total_button; i++){
-            Button b = *(m->buttons[i]);
-            int margin_factor = (i - m->total_button/2 + (i == m->total_button/2 && m->total_button%2 == 0));
-            int min_x = b.x_offset + m->x_btn_margin * margin_factor;
-            int max_x = min_x + b.w;
-            int min_y = b.y_offset + m->y_btn_margin * margin_factor;
-            int max_y = min_y + b.h;
-            
-            if ((mouse_x >= min_x && mouse_x <= max_x ) && (mouse_y >= min_y && mouse_y <= max_y )){
-                b.onclick();
-                return true;
-            }
-
+        bool is_mouse = (c == 0x01);
+        bool is_button_pressed = is_mouse && (mouse_x >= min_x && mouse_x <= max_x ) && (mouse_y >= min_y && mouse_y <= max_y);
+        
+        if (is_button_pressed || c == (49 + i)){
+            b.onclick();
+            return true;
         }
     }
+
     return false;
 }
