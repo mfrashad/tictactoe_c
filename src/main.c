@@ -27,8 +27,6 @@ void check_game_input(char c, Game *game){
     int x_offset = (WIN_WIDTH - (SIDE_LENGTH * game->size)) / 2;
     int y_offset = (WIN_HEIGHT - (SIDE_LENGTH * game->size)) / 2;
 
-    
-
     for(int i = 0; i < game->size; i++) {
         for(int j = 0; j < game->size; j++){
             //printf("x: %d - %d, \t y: %d - %d\n", x_offset + SIDE_LENGTH * j, x_offset + SIDE_LENGTH * (j+1), y_offset + SIDE_LENGTH * i, y_offset + SIDE_LENGTH * (i+1));
@@ -48,12 +46,17 @@ void check_game_input(char c, Game *game){
     }
 }
 
+void display_menu(char *c, Menu *menu){
+    gfx_clear();
+    draw_menu(menu);
+    *c = gfx_wait();
+    check_menu_input(*c, menu);
+}
+
 
 
 int main()
 {
-
-    char c;
     game = create_game(3);
 
     //Open a new window for drawing.
@@ -68,6 +71,8 @@ int main()
     Menu *size_menu = create_size_menu();
     Menu *player_menu = create_player_menu();
     Menu *statistic_menu = create_statistic_menu();
+
+    char c;
     
     //draw_board(game);
     bool loop = true;
@@ -82,28 +87,16 @@ int main()
                 check_menu_input(c, statistic_menu);
                 break;
             case MAIN_MENU:
-                gfx_clear();
-                draw_menu(start_menu);
-                c = gfx_wait();
-                check_menu_input(c, start_menu);
+                display_menu(&c, start_menu);
                 break;
             case SIZE_MENU:
-                gfx_clear();
-                draw_menu(size_menu);
-                c = gfx_wait();
-                check_menu_input(c, size_menu);
+                display_menu(&c, size_menu);
                 break;
             case MODE_MENU:
-                gfx_clear();
-                draw_menu(mode_menu);
-                c = gfx_wait();
-                check_menu_input(c, mode_menu);
+                display_menu(&c, mode_menu);
                 break;
             case PLAYER_MENU:
-                gfx_clear();
-                draw_menu(player_menu);
-                c = gfx_wait();
-                check_menu_input(c, player_menu);
+                display_menu(&c, player_menu);
                 break;
             case GAME1:
                 gfx_clear();
