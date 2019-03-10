@@ -27,6 +27,7 @@ void select_3(){
 }
 
 void play1(){
+    reset(&game);
     game_state = PLAYER_MENU;
     game->mode = SINGLE;
 }
@@ -42,6 +43,7 @@ void select_x(){
 }
 
 void play2(){
+    reset(&game);
     game_state = GAME2;
     game->mode = MULTI;
 }

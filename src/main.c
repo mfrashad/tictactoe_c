@@ -48,7 +48,7 @@ int main()
     game = create_game(3);
 
     //Open a new window for drawing.
-    gfx_open(WIN_WIDTH,WIN_HEIGHT,"Example Graphics Program");
+    gfx_open(WIN_WIDTH,WIN_HEIGHT,"Tic Tac Toe Project");
 
     gfx_clear_color(0,0,0);
     gfx_clear();
@@ -61,7 +61,8 @@ int main()
     Menu *statistic_menu = create_statistic_menu();
     
     //draw_board(game);
-    while(1) {
+    bool loop = true;
+    while(loop) {
         // Wait for the user to press a character.
         switch(game_state) {
             case STATISTIC:
@@ -118,14 +119,12 @@ int main()
                 draw_win_text(game->winner);
                 Menu *win_menu = create_win_menu(game);
                 draw_menu(win_menu);
-                //game = create_game(3);
                 c = gfx_wait();
-                while(!check_menu_input(c, win_menu)) c = gfx_wait();;
-                reset(&game);
+                check_menu_input(c, win_menu);
                 free(win_menu);
                 break;
             case QUIT:
-                return 0;
+                loop = false;
                 break;
 
                 
