@@ -161,7 +161,7 @@ Menu *create_player_menu(){
 Menu *create_win_menu(Game *game){
     int w = 180, h = 60;
     int x_offset = (WIN_WIDTH - w) / 2;
-    int y_offset = 680;
+    int y_offset = 610;
     int x_text_offset = 40;
     int y_text_offset = 10;
     int x_btn_margin = 120;
@@ -178,7 +178,7 @@ Menu *create_win_menu(Game *game){
 Menu *create_statistic_menu(){
     int w = 150, h = 40;
     int x_offset = (WIN_WIDTH - w) / 2;
-    int y_offset = 700;
+    int y_offset = 640;
     int x_text_offset = 20;
     int y_text_offset = 10;
     int x_btn_margin = 120;

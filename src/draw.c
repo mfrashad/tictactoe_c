@@ -45,7 +45,7 @@ void draw_menu(Menu *m){
 
 void draw_statistic(){
     int box1_w = WIN_WIDTH-60;
-    int box1_h = 300;
+    int box1_h = 250;
     int box1_x = 30;
     int box1_y = 40;
     int box2_w = box1_w/2;
@@ -60,35 +60,35 @@ void draw_statistic(){
     gfx_text("1 Player", box2_x + box2_w/2 - 30, box2_y + 5);
     
     gfx_text("Games Played", box2_x + 20, box2_y + 60);
-    gfx_text("Computer Won", box2_x + 20, box2_y + 100);
-    gfx_text("Computer Lost", box2_x + 20, box2_y + 140);
-    gfx_text("User Won", box2_x + 20, box2_y + 180);
-    gfx_text("User Lost", box2_x + 20, box2_y + 220);
+    gfx_text("Computer Won", box2_x + 20, box2_y + 90);
+    gfx_text("Computer Lost", box2_x + 20, box2_y + 120);
+    gfx_text("User Won", box2_x + 20, box2_y + 150);
+    gfx_text("User Lost", box2_x + 20, box2_y + 180);
 
-    for(int i=0; i<5; i++) gfx_text(":", box2_x + 200, box2_y + 60 + i*40);
+    for(int i=0; i<5; i++) gfx_text(":", box2_x + 200, box2_y + 60 + i*30);
 
     gfx_text("13", box2_x + box2_w - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 100);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 140);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 180);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 220);
+    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 90);
+    gfx_text("10", box2_x + box2_w - 50, box2_y + 120);
+    gfx_text("10", box2_x + box2_w - 50, box2_y + 150);
+    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 180);
 
     gfx_rectangle(box2_x + box2_w, box2_y, box2_w, box2_h);
     gfx_text("2 Player", box2_x + box2_w + box2_w/2 - 30, box2_y + 5);
 
     gfx_text("Games Played", box2_x + box2_w + 20, box2_y + 60);
-    gfx_text("Computer Won", box2_x + box2_w + 20, box2_y + 100);
-    gfx_text("Computer Lost", box2_x + box2_w + 20, box2_y + 140);
-    gfx_text("User Won", box2_x + box2_w + 20, box2_y + 180);
-    gfx_text("User Lost", box2_x + box2_w + 20, box2_y + 220);
+    gfx_text("Computer Won", box2_x + box2_w + 20, box2_y + 90);
+    gfx_text("Computer Lost", box2_x + box2_w + 20, box2_y + 120);
+    gfx_text("User Won", box2_x + box2_w + 20, box2_y + 150);
+    gfx_text("User Lost", box2_x + box2_w + 20, box2_y + 180);
 
-    for(int i=0; i<5; i++) gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*40);
+    for(int i=0; i<5; i++) gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*30);
 
     gfx_text("13", box2_x + box2_w*2 - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 100);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 140);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 180);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 220);
+    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 90);
+    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 120);
+    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 150);
+    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 180);
 
 
     box1_y = box1_h + 40 + 30;
@@ -101,35 +101,35 @@ void draw_statistic(){
     gfx_text("1 Player", box2_x + box2_w/2 - 30, box2_y + 5);
     
     gfx_text("Games Played", box2_x + 20, box2_y + 60);
-    gfx_text("Computer Won", box2_x + 20, box2_y + 100);
-    gfx_text("Computer Lost", box2_x + 20, box2_y + 140);
-    gfx_text("User Won", box2_x + 20, box2_y + 180);
-    gfx_text("User Lost", box2_x + 20, box2_y + 220);
+    gfx_text("Computer Won", box2_x + 20, box2_y + 90);
+    gfx_text("Computer Lost", box2_x + 20, box2_y + 120);
+    gfx_text("User Won", box2_x + 20, box2_y + 150);
+    gfx_text("User Lost", box2_x + 20, box2_y + 180);
 
-    for(int i=0; i<5; i++) gfx_text(":", box2_x + 200, box2_y + 60 + i*40);
+    for(int i=0; i<5; i++) gfx_text(":", box2_x + 200, box2_y + 60 + i*30);
 
     gfx_text("13", box2_x + box2_w - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 100);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 140);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 180);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 220);
+    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 90);
+    gfx_text("10", box2_x + box2_w - 50, box2_y + 120);
+    gfx_text("10", box2_x + box2_w - 50, box2_y + 150);
+    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 180);
 
     gfx_rectangle(box2_x + box2_w, box2_y, box2_w, box2_h);
     gfx_text("2 Player", box2_x + box2_w + box2_w/2 - 30, box2_y + 5);
 
     gfx_text("Games Played", box2_x + box2_w + 20, box2_y + 60);
-    gfx_text("Computer Won", box2_x + box2_w + 20, box2_y + 100);
-    gfx_text("Computer Lost", box2_x + box2_w + 20, box2_y + 140);
-    gfx_text("User Won", box2_x + box2_w + 20, box2_y + 180);
-    gfx_text("User Lost", box2_x + box2_w + 20, box2_y + 220);
+    gfx_text("Computer Won", box2_x + box2_w + 20, box2_y + 90);
+    gfx_text("Computer Lost", box2_x + box2_w + 20, box2_y + 120);
+    gfx_text("User Won", box2_x + box2_w + 20, box2_y + 150);
+    gfx_text("User Lost", box2_x + box2_w + 20, box2_y + 180);
 
-    for(int i=0; i<5; i++) gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*40);
+    for(int i=0; i<5; i++) gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*30);
 
     gfx_text("13", box2_x + box2_w*2 - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 100);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 140);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 180);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 220);
+    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 90);
+    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 120);
+    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 150);
+    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 180);
 }
 
 void draw_win_text(Player winner){
@@ -137,5 +137,5 @@ void draw_win_text(Player winner){
     if(winner==O) str = "Player O wins";
     if(winner==X) str = "Player X wins";
     if(winner==NONE) str = "   Draw!   ";
-    gfx_text(str, WIN_WIDTH/2 - 60, 100);
+    gfx_text(str, WIN_WIDTH/2 - 60, 50);
 }

@@ -3,7 +3,7 @@
 #define GAME_H
 
 #define WIN_WIDTH 1200
-#define WIN_HEIGHT 800
+#define WIN_HEIGHT 700
 #define SIDE_LENGTH 100
 
 typedef enum {
