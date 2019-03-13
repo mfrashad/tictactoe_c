@@ -5,17 +5,16 @@ we are required to make a tic tac toe program with a graphical library written b
 
 ## Setup
 
-clone or download the repo and go inside the directory
+Clone or download the repo and go inside the directory.
 ```
 $ git clone https://github.com/mfrashad/tictactoe_c.git
 $ cd tictactoe_c
 ```
-run this inside the project directory to compile.
+Run this inside the project directory to compile.
 ```
 $ make
 ```
 This will compile everthing in `src` into `obj` folder and create a binary file in `bin` folder.
-
 ## Run
 Run this in terminal inside the project directory to play the game.
 ```
