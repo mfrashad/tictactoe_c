@@ -2,6 +2,7 @@
 #include "tictactoe.h"
 #include "gfx.h"
 
+extern int stat[2][2][10];
 Game *create_game(int size) {
     Game *g = malloc(sizeof(Game));
     g->size = size;
@@ -71,7 +72,54 @@ Player move(Game *game, Position *last_move, Player player) {
     
     game->winner = check_winner(game, last_move);
     game->draw = is_draw(game);
+    record_stat(game);
     return game->winner;
+}
+
+// void record_stat(Game *game, Stat *stat){
+//     if(game->winner || game->draw){
+//         switch(game->size){
+//             case 3:
+//                 stat->stat[game->mode][0][GAMES_PLAYED]++;
+//                 if(game->draw) stat->stat[game->mode][0][DRAW]++;
+//                 if(game->winner != game->player) stat->stat[game->mode][0][COMPUTER_WON]++;
+//                 stat->stat[game->mode][0][COMPUTER_LOST] = stat->stat[game->mode][0][GAMES_PLAYED] - stat->stat[game->mode][0][COMPUTER_WON] - stat->stat[game->mode][1][DRAW];
+//                 stat->stat[game->mode][0][USER_WON] = stat->stat[game->mode][0][COMPUTER_LOST];
+//                 stat->stat[game->mode][0][USER_LOST] = stat->stat[game->mode][0][COMPUTER_WON];
+//                 break;
+//             case 5:
+//                 stat->stat[game->mode][1][GAMES_PLAYED]++;
+//                 if(game->draw) stat->stat[game->mode][1][DRAW]++;
+//                 if(game->winner == X) stat->stat[game->mode][0][X_WON]++;
+//                 stat->stat[game->mode][1][X_LOST] = stat->stat[game->mode][1][GAMES_PLAYED] - stat->stat[game->mode][0][X_WON] - stat->stat[game->mode][1][DRAW];
+//                 stat->stat[game->mode][1][O_WON] = stat->stat[game->mode][0][X_LOST];
+//                 stat->stat[game->mode][1][O_LOST] = stat->stat[game->mode][0][X_WON];
+//                 break;
+//         }
+//     }
+// }
+
+void record_stat(Game *game){
+    if(game->winner || game->draw){
+        switch(game->size){
+            case 3:
+                stat[0][0][0] = stat[0][0][0] + 1;
+                if(game->draw) stat[game->mode][0][DRAW] = stat[game->mode][0][DRAW] + 1;
+                if(game->winner != game->player) stat[game->mode][0][COMPUTER_WON] = stat[game->mode][0][COMPUTER_WON] + 1;
+                stat[game->mode][0][COMPUTER_LOST] = stat[game->mode][0][GAMES_PLAYED] - stat[game->mode][0][COMPUTER_WON] - stat[game->mode][1][DRAW];
+                stat[game->mode][0][USER_WON] = stat[game->mode][0][COMPUTER_LOST];
+                stat[game->mode][0][USER_LOST] = stat[game->mode][0][COMPUTER_WON];
+                break;
+            case 5:
+                stat[game->mode][1][GAMES_PLAYED]++;
+                if(game->draw) stat[game->mode][1][DRAW]++;
+                if(game->winner == X) stat[game->mode][0][X_WON]++;
+                stat[game->mode][1][X_LOST] = stat[game->mode][1][GAMES_PLAYED] - stat[game->mode][0][X_WON] - stat[game->mode][1][DRAW];
+                stat[game->mode][1][O_WON] = stat[game->mode][0][X_LOST];
+                stat[game->mode][1][O_LOST] = stat[game->mode][0][X_WON];
+                break;
+        }
+    }
 }
 
 bool is_draw(Game *game){

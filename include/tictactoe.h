@@ -36,6 +36,23 @@ typedef struct {
     int y;
 } Position;
 
+typedef enum {
+    GAMES_PLAYED = 0,
+    COMPUTER_WON,
+    COMPUTER_LOST,
+    DRAW,
+    USER_WON,
+    USER_LOST,
+    X_WON,
+    X_LOST,
+    O_WON,
+    O_LOST    
+} Data;
+
+typedef struct {
+    int data[2][2][10];
+} Stat;
+
 
 Game *create_game(int size);
 
@@ -56,5 +73,9 @@ void computer_move(Game *game);
 Position *create_position(int x, int y);
 
 void win(Player winner);
+
+Stat *create_stat();
+
+void record_stat(Game *game);
 
 #endif

@@ -1,9 +1,10 @@
 #include "gfx.h"
 #include "tictactoe.h"
 #include "draw.h"
+#include <stdio.h>
 
 
-
+extern int stat[2][2][10];
 
 void draw_x(int x, int y, int w){
     gfx_line(x, y, x+w, y+w);
@@ -52,6 +53,14 @@ void draw_statistic(){
     int box2_h = box1_h - 30;
     int box2_x = box1_x;
     int box2_y = box1_y + 30;
+
+
+    char games_played[5] = {0};
+    char x_won[5] = {0};
+    char x_lost[5] = {0};
+    char o_won[5] = {0};
+    char o_lost[5] = {0};
+
     gfx_text("Statistic", WIN_WIDTH/2 - 30, 5);
     gfx_rectangle(box1_x, box1_y,box1_w, box1_h);
     gfx_text("3x3 Tic Tac Toe", box1_w/2 - 40, box1_y + 5);
@@ -67,14 +76,27 @@ void draw_statistic(){
 
     for(int i=0; i<5; i++) gfx_text(":", box2_x + 200, box2_y + 60 + i*30);
 
-    gfx_text("13", box2_x + box2_w - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 90);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 120);
-    gfx_text("10", box2_x + box2_w - 50, box2_y + 150);
-    gfx_text(" 3", box2_x + box2_w - 50, box2_y + 180);
+    
+    sprintf(games_played, "%2d", stat[SINGLE][0][GAMES_PLAYED]);
+    sprintf(x_won, "%2d", stat[SINGLE][0][COMPUTER_WON]);
+    sprintf(x_lost, "%2d", stat[SINGLE][0][COMPUTER_LOST]);
+    sprintf(o_won, "%2d", stat[SINGLE][0][USER_WON]);
+    sprintf(o_lost, "%2d", stat[SINGLE][0][USER_LOST]);
+
+    gfx_text(games_played, box2_x + box2_w - 50, box2_y + 60);
+    gfx_text(x_won, box2_x + box2_w - 50, box2_y + 90);
+    gfx_text(x_lost, box2_x + box2_w - 50, box2_y + 120);
+    gfx_text(o_won, box2_x + box2_w - 50, box2_y + 150);
+    gfx_text(o_lost, box2_x + box2_w - 50, box2_y + 180);
 
     gfx_rectangle(box2_x + box2_w, box2_y, box2_w, box2_h);
     gfx_text("2 Player", box2_x + box2_w + box2_w/2 - 30, box2_y + 5);
+
+    sprintf(games_played, "%2d", stat[MULTI][0][GAMES_PLAYED]);
+    sprintf(x_won, "%2d", stat[MULTI][0][COMPUTER_WON]);
+    sprintf(x_lost, "%2d", stat[MULTI][0][COMPUTER_LOST]);
+    sprintf(o_won, "%2d", stat[MULTI][0][USER_WON]);
+    sprintf(o_lost, "%2d", stat[MULTI][0][USER_LOST]);
 
     gfx_text("Games Played", box2_x + box2_w + 20, box2_y + 60);
     gfx_text("Computer Won", box2_x + box2_w + 20, box2_y + 90);
@@ -84,11 +106,11 @@ void draw_statistic(){
 
     for(int i=0; i<5; i++) gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*30);
 
-    gfx_text("13", box2_x + box2_w*2 - 50, box2_y + 60);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 90);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 120);
-    gfx_text("10", box2_x + box2_w*2 - 50, box2_y + 150);
-    gfx_text(" 3", box2_x + box2_w*2 - 50, box2_y + 180);
+    gfx_text(games_played, box2_x + box2_w*2 - 50, box2_y + 60);
+    gfx_text(x_won, box2_x + box2_w*2 - 50, box2_y + 90);
+    gfx_text(x_lost, box2_x + box2_w*2 - 50, box2_y + 120);
+    gfx_text(o_won, box2_x + box2_w*2 - 50, box2_y + 150);
+    gfx_text(o_lost, box2_x + box2_w*2 - 50, box2_y + 180);
 
 
     box1_y = box1_h + 40 + 30;

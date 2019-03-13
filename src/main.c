@@ -9,6 +9,8 @@
 
 GameState game_state = MAIN_MENU;
 Game *game;
+int stat[2][2][10] = {0};
+
 
 void draw_board_cli(Game *game){
     for(int i = 0; i < game->size; i++) {
