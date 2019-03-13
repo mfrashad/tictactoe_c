@@ -101,22 +101,30 @@ Player move(Game *game, Position *last_move, Player player) {
 
 void record_stat(Game *game){
     if(game->winner || game->draw){
-        switch(game->size){
-            case 3:
-                stat[0][0][0] = stat[0][0][0] + 1;
-                if(game->draw) stat[game->mode][0][DRAW] = stat[game->mode][0][DRAW] + 1;
-                if(game->winner != game->player) stat[game->mode][0][COMPUTER_WON] = stat[game->mode][0][COMPUTER_WON] + 1;
-                stat[game->mode][0][COMPUTER_LOST] = stat[game->mode][0][GAMES_PLAYED] - stat[game->mode][0][COMPUTER_WON] - stat[game->mode][1][DRAW];
-                stat[game->mode][0][USER_WON] = stat[game->mode][0][COMPUTER_LOST];
-                stat[game->mode][0][USER_LOST] = stat[game->mode][0][COMPUTER_WON];
+        int size = game->size == 3 ? SIZE_3 : SIZE_5;
+        stat[game->mode][size][GAMES_PLAYED]++;
+        if(game->draw) {
+            stat[game->mode][size][GAMES_DRAW]++;
+            return;
+        }
+        switch(game->mode){
+            case SINGLE:
+                if(game->winner != game->player) {
+                    stat[game->mode][size][COMPUTER_WON]++;
+                } else {
+                    stat[game->mode][size][COMPUTER_LOST]++;
+                }
+                stat[game->mode][size][USER_WON] = stat[game->mode][size][COMPUTER_LOST];
+                stat[game->mode][size][USER_LOST] = stat[game->mode][size][COMPUTER_WON];
                 break;
-            case 5:
-                stat[game->mode][1][GAMES_PLAYED]++;
-                if(game->draw) stat[game->mode][1][DRAW]++;
-                if(game->winner == X) stat[game->mode][0][X_WON]++;
-                stat[game->mode][1][X_LOST] = stat[game->mode][1][GAMES_PLAYED] - stat[game->mode][0][X_WON] - stat[game->mode][1][DRAW];
-                stat[game->mode][1][O_WON] = stat[game->mode][0][X_LOST];
-                stat[game->mode][1][O_LOST] = stat[game->mode][0][X_WON];
+            case MULTI:
+                if(game->winner == X) {
+                    stat[game->mode][size][X_WON]++;
+                } else {
+                    stat[game->mode][size][X_LOST]++;    
+                }
+                stat[game->mode][size][O_WON] = stat[game->mode][size][X_LOST];
+                stat[game->mode][size][O_LOST] = stat[game->mode][size][X_WON];
                 break;
         }
     }

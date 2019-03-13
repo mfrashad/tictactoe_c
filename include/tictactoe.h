@@ -17,6 +17,12 @@ typedef enum {
     MULTI
 } GameMode;
 
+typedef enum {
+    SIZE_3,
+    SIZE_5,
+    TOTAL_SIZE
+} BOARD_SIZE;
+
 typedef struct {
     int size;
     int **board;
@@ -38,15 +44,16 @@ typedef struct {
 
 typedef enum {
     GAMES_PLAYED = 0,
+    GAMES_DRAW,
     COMPUTER_WON,
     COMPUTER_LOST,
-    DRAW,
     USER_WON,
     USER_LOST,
     X_WON,
     X_LOST,
     O_WON,
-    O_LOST    
+    O_LOST,
+    TOTAL_DATA    
 } Data;
 
 typedef struct {
