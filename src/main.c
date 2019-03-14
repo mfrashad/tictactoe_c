@@ -116,7 +116,7 @@ int main()
                 gfx_clear();
                 draw_board(game);
                 draw_game_text(game);
-                if(gfx_event_waiting()) c = gfx_wait();
+                c = gfx_wait();
                 check_game_input(c, game);
                 break;
             case GAME_WIN:
