@@ -119,16 +119,14 @@ bool is_draw(Game *game){
 }
 
 void computer_move(Game *game){
+    if(is_draw(game)) return;
     Player computer = game->player == O ? X : O;
-    for(int i=0; i<game->size; i++){
-        for(int j=0; j<game->size; j++){
-            if(game->board[i][j] == NONE){
-                move(game, create_position(j,i), computer);
-                return;
-            }
-        }
-    }
-
+    int i,j;
+    do {
+        i = rand() % game->size;
+        j = rand() % game->size;
+    } while(game->board[i][j] != NONE);
+    move(game, create_position(j,i), computer);
 }
 
 Position *create_position(int x, int y) {
