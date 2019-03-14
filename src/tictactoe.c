@@ -76,29 +76,6 @@ Player move(Game *game, Position *last_move, Player player) {
     return game->winner;
 }
 
-// void record_stat(Game *game, Stat *stat){
-//     if(game->winner || game->draw){
-//         switch(game->size){
-//             case 3:
-//                 stat->stat[game->mode][0][GAMES_PLAYED]++;
-//                 if(game->draw) stat->stat[game->mode][0][DRAW]++;
-//                 if(game->winner != game->player) stat->stat[game->mode][0][COMPUTER_WON]++;
-//                 stat->stat[game->mode][0][COMPUTER_LOST] = stat->stat[game->mode][0][GAMES_PLAYED] - stat->stat[game->mode][0][COMPUTER_WON] - stat->stat[game->mode][1][DRAW];
-//                 stat->stat[game->mode][0][USER_WON] = stat->stat[game->mode][0][COMPUTER_LOST];
-//                 stat->stat[game->mode][0][USER_LOST] = stat->stat[game->mode][0][COMPUTER_WON];
-//                 break;
-//             case 5:
-//                 stat->stat[game->mode][1][GAMES_PLAYED]++;
-//                 if(game->draw) stat->stat[game->mode][1][DRAW]++;
-//                 if(game->winner == X) stat->stat[game->mode][0][X_WON]++;
-//                 stat->stat[game->mode][1][X_LOST] = stat->stat[game->mode][1][GAMES_PLAYED] - stat->stat[game->mode][0][X_WON] - stat->stat[game->mode][1][DRAW];
-//                 stat->stat[game->mode][1][O_WON] = stat->stat[game->mode][0][X_LOST];
-//                 stat->stat[game->mode][1][O_LOST] = stat->stat[game->mode][0][X_WON];
-//                 break;
-//         }
-//     }
-// }
-
 void record_stat(Game *game){
     if(game->winner || game->draw){
         int size = game->size == 3 ? SIZE_3 : SIZE_5;

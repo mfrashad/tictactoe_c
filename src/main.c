@@ -107,6 +107,7 @@ int main()
                     game_state = GAME_WIN;
                 } else {
                     draw_board(game);
+                    draw_game_text(game);
                     c = gfx_wait();
                     check_game_input(c, game);
                 }
@@ -114,6 +115,7 @@ int main()
             case GAME2:
                 gfx_clear();
                 draw_board(game);
+                draw_game_text(game);
                 c = gfx_wait();
                 check_game_input(c, game);
                 break;
