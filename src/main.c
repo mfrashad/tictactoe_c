@@ -73,7 +73,7 @@ int main()
     Menu *size_menu = create_size_menu();
     Menu *player_menu = create_player_menu();
     Menu *statistic_menu = create_statistic_menu();
-
+    Menu *win_menu = create_win_menu(game);
     char c;
     
     //draw_board(game);
@@ -116,18 +116,17 @@ int main()
                 gfx_clear();
                 draw_board(game);
                 draw_game_text(game);
-                c = gfx_wait();
+                if(gfx_event_waiting()) c = gfx_wait();
                 check_game_input(c, game);
                 break;
             case GAME_WIN:
                 gfx_clear();
                 draw_board(game);
                 draw_win_text(game->winner);
-                Menu *win_menu = create_win_menu(game);
+                change_button_onclick(win_menu->buttons[0], game->mode == SINGLE ? play1 : play2);
                 draw_menu(win_menu);
                 c = gfx_wait();
                 check_menu_input(c, win_menu);
-                free(win_menu);
                 break;
             case QUIT:
                 loop = false;

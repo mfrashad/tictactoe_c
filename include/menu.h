@@ -31,7 +31,10 @@ typedef enum {
     QUIT
 } GameState;
 
+
 Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offset, int y_text_offset, char *msg, void (*onclick)());
+
+void change_button_onclick(Button *button, void (*func)());
 
 Menu *create_menu(int total_button, int x_btn_margin, int y_btn_margin);
 
@@ -49,6 +52,9 @@ Menu *create_statistic_menu();
 bool check_menu_input(char c, Menu *m);
 
 void play();
+void play1();
+void play2();
 void statistic();
+
 
 #endif

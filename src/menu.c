@@ -69,6 +69,10 @@ Button *create_button(int w, int h, int x_offset, int y_offset, int x_text_offse
     return b;
 }
 
+void change_button_onclick(Button *button, void (*func)()){
+    button->onclick = func;
+}
+
 Menu *create_menu(int total_button, int x_btn_margin, int y_btn_margin) {
     Menu *m = malloc(sizeof(Menu));
     m->total_button = total_button;
