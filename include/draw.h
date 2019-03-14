@@ -15,7 +15,7 @@ void draw_win_text(Player winner);
 
 void draw_game_text(Game *game);
 
-void draw_graph(int x, int y, int width, int max_length, int value);
+void draw_graph(int x, int y, int width, int max_length, int value, int max_value);
 
 void draw_statistic();
 

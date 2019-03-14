@@ -55,6 +55,13 @@ void draw_statistic(){
     char data[2][TOTAL_SIZE][TOTAL_DATA][5] = {0};
     char desc_single[5][20] = { "Games Played", "Computer Won", "User Lost", "User Won", "Uer Lost"};
     char desc_multi[5][20] = { "Games Played", "X Won", "X Lost", "O Won", "O Lost"};
+    int max_graph_length = 310;
+    int max_graph_val = 1;
+    for(int i=0;i<TOTAL_SIZE; i++) {
+        for(int j=0;j<2;j++) {
+            if(stat[i][j][GAMES_PLAYED] > max_graph_val) max_graph_val = stat[i][j][GAMES_PLAYED];
+        }
+    }
 
     gfx_text("Statistic", WIN_WIDTH/2 - 30, 5);
     gfx_rectangle(box1_x, box1_y,box1_w, box1_h);
@@ -70,12 +77,12 @@ void draw_statistic(){
     
     sprintf(data[SINGLE][SIZE_3][GAMES_PLAYED], "%2d", stat[SINGLE][SIZE_3][GAMES_PLAYED]);
     gfx_text(data[SINGLE][SIZE_3][GAMES_PLAYED], box2_x + box2_w - 50, box2_y + 60);
-    draw_graph(box2_x + 200, box2_y + 60, 20, 200, stat[SINGLE][SIZE_3][GAMES_PLAYED]);
+    draw_graph(box2_x + 200, box2_y + 60, 20, max_graph_length, stat[SINGLE][SIZE_3][GAMES_PLAYED], max_graph_val);
     for(int i=0; i<4; i++){
         int init_enum = i + COMPUTER_WON;
         sprintf(data[SINGLE][SIZE_3][init_enum], "%2d", stat[SINGLE][SIZE_3][init_enum]);
         gfx_text(data[SINGLE][SIZE_3][init_enum], box2_x + box2_w - 50, box2_y + 60 + (i+1)*text_y_margin);
-        draw_graph(box2_x + 200, box2_y + 60 + (i+1)*text_y_margin, 20, 200 , stat[SINGLE][SIZE_3][init_enum]);
+        draw_graph(box2_x + 200, box2_y + 60 + (i+1)*text_y_margin, 20, max_graph_length , stat[SINGLE][SIZE_3][init_enum], max_graph_val);
     }
 
     gfx_rectangle(box2_x + box2_w, box2_y, box2_w, box2_h);
@@ -89,12 +96,12 @@ void draw_statistic(){
 
     sprintf(data[MULTI][SIZE_3][GAMES_PLAYED], "%2d", stat[MULTI][SIZE_3][GAMES_PLAYED]);
     gfx_text(data[MULTI][SIZE_3][GAMES_PLAYED], box2_x + box2_w*2 - 50, box2_y + 60);
-    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, 200, stat[MULTI][SIZE_3][GAMES_PLAYED]);
+    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, max_graph_length, stat[MULTI][SIZE_3][GAMES_PLAYED], max_graph_val);
     for(int i=0; i<4; i++){
         int init_enum = i + X_WON;
         sprintf(data[MULTI][SIZE_3][init_enum], "%2d", stat[MULTI][SIZE_3][init_enum]);
         gfx_text(data[MULTI][SIZE_3][init_enum], box2_x + box2_w*2 - 50, box2_y + 60 + (i+1)*text_y_margin);
-        draw_graph(box2_x + box2_w + 200, box2_y + 60 + (i+1)*30, 20, 200, stat[MULTI][SIZE_3][init_enum]);
+        draw_graph(box2_x + box2_w + 200, box2_y + 60 + (i+1)*30, 20, max_graph_length, stat[MULTI][SIZE_3][init_enum], max_graph_val);
     }
 
     //-------------------5x5------------------------------------//
@@ -114,12 +121,12 @@ void draw_statistic(){
 
     sprintf(data[SINGLE][SIZE_5][GAMES_PLAYED], "%2d", stat[SINGLE][SIZE_5][GAMES_PLAYED]);
     gfx_text(data[SINGLE][SIZE_5][GAMES_PLAYED], box2_x + box2_w - 50, box2_y + 60);
-    draw_graph(box2_x + 200, box2_y + 60, 20, 200, stat[SINGLE][SIZE_5][GAMES_PLAYED]);
+    draw_graph(box2_x + 200, box2_y + 60, 20, max_graph_length, stat[SINGLE][SIZE_5][GAMES_PLAYED], max_graph_val);
     for(int i=0; i<4; i++){
         int init_enum = i + COMPUTER_WON;
         sprintf(data[SINGLE][SIZE_5][init_enum], "%2d", stat[SINGLE][SIZE_5][init_enum]);
         gfx_text(data[SINGLE][SIZE_5][init_enum], box2_x + box2_w - 50, box2_y + 60 + (i+1)*text_y_margin);
-        draw_graph(box2_x + 200, box2_y + 60 + (i+1)*text_y_margin, 20, 200 , stat[SINGLE][SIZE_5][init_enum]);
+        draw_graph(box2_x + 200, box2_y + 60 + (i+1)*text_y_margin, 20, max_graph_length , stat[SINGLE][SIZE_5][init_enum], max_graph_val);
     }
 
     gfx_rectangle(box2_x + box2_w, box2_y, box2_w, box2_h);
@@ -132,18 +139,18 @@ void draw_statistic(){
 
     sprintf(data[MULTI][SIZE_5][GAMES_PLAYED], "%2d", stat[MULTI][SIZE_5][GAMES_PLAYED]);
     gfx_text(data[MULTI][SIZE_5][GAMES_PLAYED], box2_x + box2_w*2 - 50, box2_y + 60);
-    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, 200, stat[MULTI][SIZE_3][GAMES_PLAYED]);
+    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, max_graph_length, stat[MULTI][SIZE_3][GAMES_PLAYED], max_graph_val);
     for(int i=0; i<4; i++){
         int init_enum = i + X_WON;
         sprintf(data[MULTI][SIZE_5][init_enum], "%2d", stat[MULTI][SIZE_5][init_enum]);
         gfx_text(data[MULTI][SIZE_5][init_enum], box2_x + box2_w*2 - 50, box2_y + 60 + (i+1)*text_y_margin);
-        draw_graph(box2_x + box2_w + 200, box2_y + 60 + (i+1)*30, 20, 200, stat[MULTI][SIZE_5][init_enum]);
+        draw_graph(box2_x + box2_w + 200, box2_y + 60 + (i+1)*30, 20, max_graph_length, stat[MULTI][SIZE_5][init_enum], max_graph_val);
     }
 }
 
-void draw_graph(int x, int y, int width, int max_length, int value){
+void draw_graph(int x, int y, int width, int max_length, int value, int max_value){
     gfx_color(255,255,255);
-    float length = (float)value/20 * max_length + 1;
+    float length = (float)value/max_value * max_length + 1;
     gfx_fillrectangle(x, y, (int)length, width);
 }
 
