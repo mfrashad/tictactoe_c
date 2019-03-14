@@ -53,7 +53,7 @@ void draw_statistic(){
     int box2_y = box1_y + 30;
     int text_y_margin = 30;
     char data[2][TOTAL_SIZE][TOTAL_DATA][5] = {0};
-    char desc_single[5][20] = { "Games Played", "Computer Won", "User Lost", "User Won", "Uer Lost"};
+    char desc_single[5][20] = { "Games Played", "Computer Won", "Computer Lost", "User Won", "User Lost"};
     char desc_multi[5][20] = { "Games Played", "X Won", "X Lost", "O Won", "O Lost"};
     int max_graph_length = 310;
     int max_graph_val = 1;
