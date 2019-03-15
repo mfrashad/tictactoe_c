@@ -5,7 +5,6 @@
 #include "tictactoe.h"
 #include "draw.h"
 #include "menu.h"
-#include "game.h"
 
 GameState game_state = MAIN_MENU;
 Game *game;
