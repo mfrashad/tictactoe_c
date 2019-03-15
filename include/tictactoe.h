@@ -85,6 +85,10 @@ Stat *create_stat();
 
 void reset_stat();
 
+bool read_stat();
+
+bool save_stat();
+
 void record_stat(Game *game);
 
 #endif

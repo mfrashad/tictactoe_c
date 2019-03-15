@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tictactoe.h"
-#include "gfx.h"
 
 extern int stat[2][TOTAL_SIZE][TOTAL_DATA];
 Game *create_game(int size) {
@@ -136,13 +135,6 @@ Position *create_position(int x, int y) {
     position->y = y;
 
     return position;
-}
-
-void win(Player winner) {
-    char *str;
-    if(winner==O) str = "Player O wins";
-    if(winner==X) str = "Player X wins";
-    gfx_text(str, 200, 100);
 }
 
 void reset_stat(){
