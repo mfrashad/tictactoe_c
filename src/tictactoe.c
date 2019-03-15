@@ -1,8 +1,9 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "tictactoe.h"
 #include "gfx.h"
 
-extern int stat[2][2][10];
+extern int stat[2][TOTAL_SIZE][TOTAL_DATA];
 Game *create_game(int size) {
     Game *g = malloc(sizeof(Game));
     g->size = size;
@@ -142,4 +143,27 @@ void win(Player winner) {
     if(winner==O) str = "Player O wins";
     if(winner==X) str = "Player X wins";
     gfx_text(str, 200, 100);
+}
+
+bool read_stat(){
+    FILE *f;
+    if((f = fopen("stat.data", "rb")) == NULL) {
+        printf("Error opening file");
+        return false;
+    }
+    fread(stat, sizeof(int) * 2*TOTAL_SIZE*TOTAL_DATA, 1, f);
+    fclose(f);
+    return true;
+}
+
+bool save_stat(){
+    int written = 0;
+    FILE *f = fopen("stat.data", "wb");
+    written = fwrite(stat, sizeof(int)*2*TOTAL_SIZE*TOTAL_DATA, 1, f);
+    if(written == 0) {
+        printf("Error writing file");
+        return false;
+    }
+    fclose(f);
+    return true;
 }

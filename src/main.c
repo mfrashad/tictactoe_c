@@ -75,6 +75,7 @@ int main()
     Menu *statistic_menu = create_statistic_menu();
     Menu *win_menu = create_win_menu(game);
     char c;
+    read_stat();
     
     //draw_board(game);
     bool loop = true;
@@ -130,6 +131,7 @@ int main()
                 break;
             case QUIT:
                 loop = false;
+                save_stat();
                 break;
 
                 
