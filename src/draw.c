@@ -139,7 +139,7 @@ void draw_statistic(){
 
     sprintf(data[MULTI][SIZE_5][GAMES_PLAYED], "%2d", stat[MULTI][SIZE_5][GAMES_PLAYED]);
     gfx_text(data[MULTI][SIZE_5][GAMES_PLAYED], box2_x + box2_w*2 - 50, box2_y + 60);
-    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, max_graph_length, stat[MULTI][SIZE_3][GAMES_PLAYED], max_graph_val);
+    draw_graph(box2_x + box2_w + 200, box2_y + 60, 20, max_graph_length, stat[MULTI][SIZE_5][GAMES_PLAYED], max_graph_val);
     for(int i=0; i<4; i++){
         int init_enum = i + X_WON;
         sprintf(data[MULTI][SIZE_5][init_enum], "%2d", stat[MULTI][SIZE_5][init_enum]);
