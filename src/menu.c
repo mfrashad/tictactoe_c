@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "gfx.h"
 #include "tictactoe.h"
-#include "game.h"
 #include "menu.h"
 #include "draw.h"
 
