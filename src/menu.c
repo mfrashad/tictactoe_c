@@ -188,9 +188,11 @@ Menu *create_statistic_menu(){
     int x_btn_margin = 120;
 
     char *back_msg = "Back";
+    char *reset_msg = "Reset";
 
-    Menu *statistic_menu = create_menu(1, x_btn_margin, 0);
+    Menu *statistic_menu = create_menu(2, x_btn_margin, 0);
     statistic_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, back_msg, main_menu); //Play button
+    statistic_menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, reset_msg, reset_stat); //Play button
     return statistic_menu;
 }
 

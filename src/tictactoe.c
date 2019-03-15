@@ -145,6 +145,16 @@ void win(Player winner) {
     gfx_text(str, 200, 100);
 }
 
+void reset_stat(){
+    for(int i=0;i<2;i++){
+        for(int j=0;j<TOTAL_SIZE; j++){
+            for(int k=0; k<TOTAL_DATA; k++){
+                stat[i][j][k] = 0;
+            }
+        }
+    }
+}
+
 bool read_stat(){
     FILE *f;
     if((f = fopen("stat.data", "rb")) == NULL) {

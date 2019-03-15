@@ -83,6 +83,8 @@ void win(Player winner);
 
 Stat *create_stat();
 
+void reset_stat();
+
 void record_stat(Game *game);
 
 #endif
