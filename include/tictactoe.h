@@ -81,6 +81,8 @@ Position *create_position(int x, int y);
 
 void win(Player winner);
 
+void check_game_input(Game *game, char c, int mouse_x, int mouse_y);
+
 Stat *create_stat();
 
 void reset_stat();

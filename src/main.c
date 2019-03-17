@@ -19,34 +19,6 @@ void draw_board_cli(Game *game){
     }
 }
 
-
-
-void check_game_input(char c, Game *game){
-    int mouse_x = gfx_xpos();
-    int mouse_y = gfx_ypos();
-
-    int x_offset = (WIN_WIDTH - (SIDE_LENGTH * game->size)) / 2;
-    int y_offset = (WIN_HEIGHT - (SIDE_LENGTH * game->size)) / 2;
-
-    for(int i = 0; i < game->size; i++) {
-        for(int j = 0; j < game->size; j++){
-            //printf("x: %d - %d, \t y: %d - %d\n", x_offset + SIDE_LENGTH * j, x_offset + SIDE_LENGTH * (j+1), y_offset + SIDE_LENGTH * i, y_offset + SIDE_LENGTH * (i+1));
-
-            bool is_mouse = (c == 0x01);
-            bool is_button_pressed = is_mouse && 
-                                     (mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) && 
-                                     (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) );
-
-            bool is_number_pressed = c == (48 + j+1 + i*game->size);
-
-            if (is_button_pressed || is_number_pressed){
-                move(game, create_position(j,i), game->next_turn);
-                if(game->winner || game->draw) game_state = GAME_WIN;
-            }
-        }
-    }
-}
-
 void display_menu(char *c, Menu *menu){
     gfx_clear();
     draw_menu(menu);
@@ -109,7 +81,7 @@ int main()
                     draw_board(game);
                     draw_game_text(game);
                     c = gfx_wait();
-                    check_game_input(c, game);
+                    check_game_input(game, c, gfx_xpos(), gfx_ypos());
                 }
                 break;
             case GAME2:
@@ -117,7 +89,7 @@ int main()
                 draw_board(game);
                 draw_game_text(game);
                 c = gfx_wait();
-                check_game_input(c, game);
+                check_game_input(game, c, gfx_xpos(), gfx_ypos());
                 break;
             case GAME_WIN:
                 gfx_clear();
