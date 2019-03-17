@@ -20,6 +20,10 @@ Run this in terminal inside the project directory to play the game.
 ```
 $ bin/tictactoe
 ```
-The window below will appear.
-![alt text](https://github.com/mfrashad/tictactoe_c/raw/master//thumbnail.png "Gameplay Images")
+The windown below will appear
+
+<img src="https://github.com/mfrashad/tictactoe_c/raw/master//thumbnail.png" width="300" />
+
+## Gameplay Preview
+![alt text](https://github.com/mfrashad/tictactoe_c/raw/master//preview.gif "Gameplay Preview")
 
