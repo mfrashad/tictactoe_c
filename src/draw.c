@@ -159,11 +159,11 @@ void draw_win_text(Player winner){
     if(winner==O) str = "Player O wins";
     if(winner==X) str = "Player X wins";
     if(winner==NONE) str = "   Draw!   ";
-    gfx_text(str, WIN_WIDTH/2 - 60, 50);
+    gfx_text(str, WIN_WIDTH/2 - 80, 50);
 }
 
 void draw_game_text(Game *game){
     char *str;
     str = (game->next_turn == O) ? "Player O's turn" : "Player X's turn";  
-    gfx_text(str, WIN_WIDTH/2 - 60, 50);
+    gfx_text(str, WIN_WIDTH/2 - 80, 50);
 }

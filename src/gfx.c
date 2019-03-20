@@ -133,7 +133,9 @@ void gfx_fillcircle( int x, int y, int radius )
 void gfx_text(char *test2, int x, int y)
 {
 	XFontStruct *ft;
-	char* font_name = "*-20-200-*";
+//	char* font_name = "*-20-200-*";//generalised standard font with scalabel size
+	char* font_name = "*12x24kana*"; //larger font size
+
 	ft =  XLoadQueryFont(gfx_display, font_name);
 	if (!ft) {
     	fprintf(stderr, "XLoadQueryFont: failed loading font '%s'\n", font_name);

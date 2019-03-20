@@ -87,7 +87,7 @@ Menu *create_start_menu(){
     int w = 300, h = 100;
     int x_offset = (WIN_WIDTH - w) / 2;
     int y_offset = (WIN_HEIGHT - h) / 2;
-    int x_text_offset = 40;
+    int x_text_offset = 50;
     int y_text_offset = 10;
     int y_btn_margin = 120;
 
@@ -146,7 +146,7 @@ Menu *create_player_menu(){
     int w = 300, h = 100;
     int x_offset = (WIN_WIDTH - w) / 2;
     int y_offset = (WIN_HEIGHT - h) / 2;
-    int x_text_offset = 40;
+    int x_text_offset = 50;
     int y_text_offset = 10;
     int y_btn_margin = 120;
 
@@ -165,12 +165,12 @@ Menu *create_win_menu(Game *game){
     int w = 180, h = 60;
     int x_offset = (WIN_WIDTH - w) / 2;
     int y_offset = 610;
-    int x_text_offset = 40;
+    int x_text_offset = 60;
     int y_text_offset = 10;
     int x_btn_margin = 120;
 
     char *msg1 = "Play Again";
-    char *msg2 = "Main Menu ";
+    char *msg2 = "Main  Menu";
 
     Menu *win_menu = create_menu(2, x_btn_margin, 0);
     win_menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, game->mode == SINGLE ? play1 : play2); //Play button
@@ -182,11 +182,11 @@ Menu *create_statistic_menu(){
     int w = 150, h = 40;
     int x_offset = (WIN_WIDTH - w) / 2;
     int y_offset = 640;
-    int x_text_offset = 20;
+    int x_text_offset = 30;
     int y_text_offset = 10;
     int x_btn_margin = 120;
 
-    char *back_msg = "Back";
+    char *back_msg = "Back ";
     char *reset_msg = "Reset";
 
     Menu *statistic_menu = create_menu(2, x_btn_margin, 0);
