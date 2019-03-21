@@ -2,8 +2,10 @@
 #include "tictactoe.h"
 #include "draw.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 extern int stat[2][TOTAL_SIZE][TOTAL_DATA];
+extern bool keyboard_help;
 
 void draw_x(int x, int y, int w){
     gfx_line(x, y, x+w, y+w);
@@ -23,6 +25,13 @@ void draw_board(Game *game) {
     for(int i = 0; i < game->size; i++) {
         for(int j = 0; j < game->size; j++){
             gfx_rectangle(x_offset + SIDE_LENGTH * j, y_offset + SIDE_LENGTH * i, SIDE_LENGTH, SIDE_LENGTH);
+            
+            if(keyboard_help){
+                int square_num = j+1 + i*game->size; //convert to num, start from 1
+                char input = square_num + 96; //(a-z)
+                gfx_text(&input, x_offset + SIDE_LENGTH * j + 5, y_offset + SIDE_LENGTH * i);
+            }
+            
             if (game->board[i][j] == X) draw_x(x_offset + 10 + SIDE_LENGTH * j, y_offset + 10 + SIDE_LENGTH * i, SIDE_LENGTH - 20);
             if (game->board[i][j] == O) draw_o(x_offset + 10 + SIDE_LENGTH * j, y_offset + 10 + SIDE_LENGTH * i, SIDE_LENGTH - 20);
         }
@@ -39,6 +48,12 @@ void draw_menu(Menu *m){
         int text_y = b.y_offset + b.h/2 + m->y_btn_margin * margin_factor - b.y_text_offset;
         gfx_rectangle(rect_x, rect_y, b.w, b.h);
         gfx_text(b.msg, text_x, text_y);
+
+        if(keyboard_help){
+            char input = i+49;
+            gfx_text(&input, rect_x + 10, text_y);
+        }
+        
     }
 }
 
@@ -155,4 +170,10 @@ void draw_game_text(Game *game){
     char *str;
     str = (game->next_turn == O) ? "Player O's turn" : "Player X's turn";  
     gfx_text(str, WIN_WIDTH/2 - 80, 50);
+}
+
+void draw_keyboard_help_text(){
+    char msg[100] = "       Press TAB for keyboard input help      ";
+    if(keyboard_help) sprintf(msg, "Press the key shown inside the button to click the area");
+    gfx_text(msg, WIN_WIDTH/2 - 300, WIN_HEIGHT - 50);
 }

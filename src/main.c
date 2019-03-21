@@ -8,6 +8,7 @@
 
 GameState game_state = MAIN_MENU;
 Game *game;
+bool keyboard_help = false;
 int stat[2][TOTAL_SIZE][TOTAL_DATA] = {0};
 
 
@@ -20,7 +21,6 @@ void draw_board_cli(Game *game){
 }
 
 void display_menu(char *c, Menu *menu){
-    gfx_clear();
     draw_menu(menu);
     *c = gfx_wait();
     check_menu_input(*c, menu);
@@ -51,16 +51,15 @@ int main()
     //draw_board(game);
     bool loop = true;
     while(loop) {
+        gfx_clear();
         // Wait for the user to press a character.
         switch(game_state) {
             case STATISTIC:
-                gfx_clear();
-                draw_menu(statistic_menu);
                 draw_statistic();
-                c = gfx_wait();
-                check_menu_input(c, statistic_menu);
+                display_menu(&c, statistic_menu);
                 break;
             case MAIN_MENU:
+                draw_keyboard_help_text();
                 display_menu(&c, start_menu);
                 break;
             case SIZE_MENU:
@@ -73,7 +72,6 @@ int main()
                 display_menu(&c, player_menu);
                 break;
             case GAME1:
-                gfx_clear();
                 if(game->next_turn != game->player) computer_move(game);
                 if(game->winner || game->draw) {
                     game_state = GAME_WIN;
@@ -85,20 +83,16 @@ int main()
                 }
                 break;
             case GAME2:
-                gfx_clear();
                 draw_board(game);
                 draw_game_text(game);
                 c = gfx_wait();
                 check_game_input(game, c, gfx_xpos(), gfx_ypos());
                 break;
             case GAME_WIN:
-                gfx_clear();
                 draw_board(game);
                 draw_win_text(game->winner);
                 change_button_onclick(win_menu->buttons[0], game->mode == SINGLE ? play1 : play2);
-                draw_menu(win_menu);
-                c = gfx_wait();
-                check_menu_input(c, win_menu);
+                display_menu(&c, win_menu);
                 break;
             case QUIT:
                 loop = false;
@@ -107,7 +101,8 @@ int main()
 
                 
         }
-        if(c=='q') break;
+        if(c==0x09) keyboard_help = !keyboard_help; //TAB button
+        if(c==0x1B) break; //ESC button
         //if(c==0x01) printf("Coordinates: %d %d",gfx_xpos(),gfx_ypos());
         
     }

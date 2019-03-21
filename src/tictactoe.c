@@ -186,7 +186,9 @@ void check_game_input(Game *game, char c, int mouse_x, int mouse_y){
                                      (mouse_x >= x_offset + SIDE_LENGTH * j && mouse_x <= x_offset + SIDE_LENGTH * (j+1) ) && 
                                      (mouse_y >= y_offset + SIDE_LENGTH * i && mouse_y <= y_offset + SIDE_LENGTH * (i+1) );
 
-            bool is_number_pressed = c == (48 + j+1 + i*game->size);
+            int square_num = j+1 + i*game->size; //convert indexes to num, (1 to board size);
+            char valid_input = square_num + 96; //(a-z)
+            bool is_number_pressed = c == valid_input;
 
             if (is_button_pressed || is_number_pressed){
                 move(game, create_position(j,i), game->next_turn);
