@@ -163,7 +163,7 @@ void draw_win_text(Player winner){
     if(winner==O) str = "Player O wins!";
     if(winner==X) str = "Player X wins!";
     if(winner==NONE) str = "   Draw!   ";
-    gfx_text(str, WIN_WIDTH/2 - 80, 80);
+    gfx_text(str, WIN_WIDTH/2 - 80, 60);
 }
 
 void draw_game_text(Game *game){
