@@ -49,11 +49,9 @@ int main()
     char c;
     read_stat();
     
-    //draw_board(game);
     bool loop = true;
     while(loop) {
         gfx_clear();
-        // Wait for the user to press a character.
         switch(game_state) {
             case STATISTIC:
                 draw_statistic();
@@ -102,13 +100,9 @@ int main()
                 loop = false;
                 save_stat();
                 break;
-
-                
         }
         if(c==0x09) keyboard_help = !keyboard_help; //TAB button
         if(c==0x1B) break; //ESC button
-        //if(c==0x01) printf("Coordinates: %d %d",gfx_xpos(),gfx_ypos());
-        
     }
     
     return 0;

@@ -103,7 +103,6 @@ void draw_statistic(){
     
     for(int i=0;i<6;i++){
         gfx_text(desc_multi[i], box2_x + box2_w + 20, box2_y + 60 + 30*i);
-        //gfx_text(":", box2_x + box2_w + 200, box2_y + 60 + i*30);
     } 
 
     for(int i=0; i<6; i++){

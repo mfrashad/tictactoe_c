@@ -56,11 +56,6 @@ typedef enum {
     TOTAL_DATA    
 } Data;
 
-typedef struct {
-    int data[2][2][10];
-} Stat;
-
-
 Game *create_game(int size);
 
 void reset(Game **game);
@@ -82,8 +77,6 @@ Position *create_position(int x, int y);
 void win(Player winner);
 
 void check_game_input(Game *game, char c, int mouse_x, int mouse_y);
-
-Stat *create_stat();
 
 void reset_stat();
 
