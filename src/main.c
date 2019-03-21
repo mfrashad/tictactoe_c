@@ -45,6 +45,7 @@ int main()
     Menu *player_menu = create_player_menu();
     Menu *statistic_menu = create_statistic_menu();
     Menu *win_menu = create_win_menu(game);
+    Menu *game_menu = create_game_menu(game);
     char c;
     read_stat();
     
@@ -76,10 +77,13 @@ int main()
                 if(game->winner || game->draw) {
                     game_state = GAME_WIN;
                 } else {
+                    change_button_onclick(game_menu->buttons[0], game->mode == SINGLE ? play1 : play2);
+                    draw_menu(game_menu);
                     draw_board(game);
                     draw_game_text(game);
                     c = gfx_wait();
                     check_game_input(game, c, gfx_xpos(), gfx_ypos());
+                    check_menu_input(c, game_menu);
                 }
                 break;
             case GAME2:

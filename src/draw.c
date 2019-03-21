@@ -160,10 +160,10 @@ void draw_graph(int x, int y, int width, int max_length, int value, int max_valu
 
 void draw_win_text(Player winner){
     char *str;
-    if(winner==O) str = "Player O wins";
-    if(winner==X) str = "Player X wins";
+    if(winner==O) str = "Player O wins!";
+    if(winner==X) str = "Player X wins!";
     if(winner==NONE) str = "   Draw!   ";
-    gfx_text(str, WIN_WIDTH/2 - 80, 50);
+    gfx_text(str, WIN_WIDTH/2 - 80, 80);
 }
 
 void draw_game_text(Game *game){

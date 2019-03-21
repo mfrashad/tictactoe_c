@@ -48,6 +48,8 @@ Menu *create_player_menu();
 
 Menu *create_win_menu(Game *game);
 
+Menu *create_game_menu(Game *game);
+
 Menu *create_statistic_menu();
 bool check_menu_input(char c, Menu *m);
 

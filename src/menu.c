@@ -195,6 +195,23 @@ Menu *create_statistic_menu(){
     return statistic_menu;
 }
 
+Menu *create_game_menu(Game *game){
+    int w = 180, h = 60;
+    int x_offset = (WIN_WIDTH - w) / 2;
+    int y_offset = 610;
+    int x_text_offset = 60;
+    int y_text_offset = 10;
+    int x_btn_margin = 120;
+
+    char *msg1 = " Restart ";
+    char *msg2 = "Main Menu";
+
+    Menu *menu = create_menu(2, x_btn_margin, 0);
+    menu->buttons[0] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg1, game->mode == SINGLE ? play1 : play2); //Play button
+    menu->buttons[1] = create_button(w, h, x_offset, y_offset, x_text_offset, y_text_offset, msg2, main_menu); //Stats button
+    return menu;
+}
+
 
 bool check_menu_input(char c, Menu *m){
     
