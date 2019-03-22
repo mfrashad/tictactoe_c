@@ -151,6 +151,58 @@ void draw_statistic(){
     }
 }
 
+void draw_title(){
+    int start_x = WIN_WIDTH/2 - 500;
+    int start_y = 50;
+    int weight = 20;
+    //draw_char('t', start_x, start_y, weight);
+    draw_string("tic tac toe", start_x, start_y);
+}
+
+void draw_string(char *str, int x, int y){
+    int i=0;
+    while(str[i]!=NULL){
+        draw_char(str[i], x+i*90, y, 20);
+        i++;
+    }
+}
+
+void draw_char(char c, int x, int y, int weight){
+    switch(c){
+        case 't':
+            gfx_fillrectangle(x,y,80,weight);
+            gfx_fillrectangle(x+(80-weight)/2, y+weight, weight, 80-weight);
+            break;
+        case 'i':
+            gfx_fillrectangle(x+(80-weight)/2,y,weight, 80);
+            break;
+        case 'c':
+            gfx_fillrectangle(x,y,80,weight);
+            gfx_fillrectangle(x,y+weight,weight,80-2*weight);
+            gfx_fillrectangle(x,y+80-weight,80,weight);
+            break;
+        case 'a':
+            gfx_fillrectangle(x,y,weight,80);
+            gfx_fillrectangle(x+weight,y,80-2*weight,weight);
+            gfx_fillrectangle(x+weight,y+2*weight,80-2*weight,weight);
+            gfx_fillrectangle(x+80-weight,y,weight,80);
+            break;
+        case 'o':
+            gfx_fillrectangle(x,y,80,weight);
+            gfx_fillrectangle(x,y+weight,weight,80-2*weight);
+            gfx_fillrectangle(x+80-weight,y+weight,weight,80-2*weight);
+            gfx_fillrectangle(x,y+80-weight,80,weight);
+            break;
+        case 'e':
+            gfx_fillrectangle(x,y,weight,80);
+            gfx_fillrectangle(x+weight,y,80-weight,weight);
+            gfx_fillrectangle(x+weight,y+weight+(80-3*weight)/2,80-weight,weight);
+            gfx_fillrectangle(x+weight,y+80-weight,80-weight,weight);
+        case ' ':
+            break;
+    }
+}
+
 void draw_graph(int x, int y, int width, int max_length, int value, int max_value){
     gfx_color(255,255,255);
     float length = (float)value/max_value * max_length + 1;

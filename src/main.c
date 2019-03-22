@@ -58,16 +58,20 @@ int main()
                 display_menu(&c, statistic_menu);
                 break;
             case MAIN_MENU:
+                draw_title();
                 draw_keyboard_help_text();
                 display_menu(&c, start_menu);
                 break;
             case SIZE_MENU:
+                draw_title();
                 display_menu(&c, size_menu);
                 break;
             case MODE_MENU:
+                draw_title();
                 display_menu(&c, mode_menu);
                 break;
             case PLAYER_MENU:
+                draw_title();
                 display_menu(&c, player_menu);
                 break;
             case GAME1:
