@@ -11,6 +11,12 @@ void draw_board(Game *game);
 
 void draw_menu(Menu *menu);
 
+void draw_title();
+
+void draw_string(char *str, int x, int y, int weight);
+
+void draw_char(char c, int x, int y, int weight);
+
 void draw_win_text(Player winner);
 
 void draw_game_text(Game *game);

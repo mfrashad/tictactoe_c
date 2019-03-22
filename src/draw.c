@@ -156,12 +156,12 @@ void draw_title(){
     int start_y = 50;
     int weight = 20;
     //draw_char('t', start_x, start_y, weight);
-    draw_string("tic tac toe", start_x, start_y);
+    draw_string("tic tac toe", start_x, start_y, weight);
 }
 
-void draw_string(char *str, int x, int y){
+void draw_string(char *str, int x, int y, int weight){
     int i=0;
-    while(str[i]!=NULL){
+    while(str[i]!='\0'){
         draw_char(str[i], x+i*90, y, 20);
         i++;
     }
